@@ -15,6 +15,7 @@ setDT(ReccueilR)
 format_column_name <- function(colname) {
   return(tolower(str_replace_all(str_replace_all(colname, " ", "_"), "é", "e")))
 }
+
 dFractureByTrauma = ReccueilR[!is.na(Traumatisme)&!is.na(Fracture)]
 p1 = dFractureByTrauma %>%
   ggplot(
