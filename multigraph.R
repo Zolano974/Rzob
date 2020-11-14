@@ -28,7 +28,7 @@ mydata = ReccueilR[
 
 
 # Autotest x Oxford
-p1 = mydata %>%
+pOxford = mydata %>%
   ggplot( aes(x=Autotest, y=Oxford)) +
   geom_point(
     size=2, 
@@ -47,7 +47,7 @@ p1 = mydata %>%
 
 
 # Autotest x Womac
-p2 = mydata %>%
+pWomac = mydata %>%
   ggplot( aes(x=Autotest, y=Womac)) +
   geom_point(
     size=2, 
@@ -67,7 +67,7 @@ p2 = mydata %>%
 
 
 # Autotest x Harris
-p3 = mydata %>%
+pHarris = mydata %>%
   ggplot( aes(x=Autotest, y=-HarrisHS)) +
   geom_point(
     size=2, 
@@ -85,12 +85,12 @@ p3 = mydata %>%
   )
 p3
 
-p4 = 
+pPMA = 
   mydata %>%
   ggplot( aes(x=Autotest, y=-PMA)) +
   geom_point(
     size=2, 
-    shape=17,
+    shape=14,
     color="orange"
   ) +
   geom_smooth(
@@ -102,9 +102,7 @@ p4 =
     fullrange=FALSE, 
     level=0.995
   )
-p4
+pPMA
 
 
-plot_grid(p1, p2, labels=c("ZOBY", "ZOBA"), ncol = 2, nrow = 1)
-
-plot_grid(p1, p2, p3, p4, labels=c("Oxford", "Womac", "Harris", "PMA"),ncol = 2, nrow = 2)
+plot_grid(pOxford, pWomac, pHarris, pPMA, labels=c("Oxford", "Womac", "Harris", "PMA"),ncol = 2, nrow = 2)
