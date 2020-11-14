@@ -91,7 +91,7 @@ p0bis = mydata %>%
     fill="darkgreen",
     aes(x=Autotest, y=Oxford),
     method="lm", 
-    se=TRUE, 
+    se=FALSE, 
     fullrange=FALSE, 
     level=0.95
   ) +   
@@ -100,7 +100,7 @@ p0bis = mydata %>%
     fill="darkblue",
     aes(x=Autotest, y=Womac),
     method="lm", 
-    se=TRUE, 
+    se=FALSE, 
     fullrange=FALSE, 
     level=0.95
   ) +
@@ -109,7 +109,7 @@ p0bis = mydata %>%
     fill="darkred",
     aes(x=Autotest, y=(-HarrisHS+100)),
     method="lm", 
-    se=TRUE, 
+    se=FALSE, 
     fullrange=FALSE, 
     level=0.95
   ) +
@@ -118,7 +118,7 @@ p0bis = mydata %>%
     fill="darkorange",
     aes(x=Autotest, y=(-PMA+30)),
     method="lm", 
-    se=TRUE, 
+    se=FALSE, 
     fullrange=FALSE, 
     level=0.95
   )
@@ -142,7 +142,7 @@ ggplot( aes(x=Autotest, y=Oxford)) +
     method="lm", 
     se=TRUE, 
     fullrange=FALSE, 
-    level=0.95
+    level=0.995
   )
 
 
@@ -181,11 +181,12 @@ ggplot( aes(x=Autotest, y=-HarrisHS)) +
     method="lm", 
     se=TRUE, 
     fullrange=FALSE, 
-    level=0.95
+    level=0.995
   )
+p3
 
-
-p4 = mydata %>%
+p4 = 
+  mydata %>%
   ggplot( aes(x=Autotest, y=-PMA)) +
   geom_point(
     size=2, 
@@ -199,7 +200,7 @@ p4 = mydata %>%
     method="lm", 
     se=TRUE, 
     fullrange=FALSE, 
-    level=0.95
+    level=0.995
   )
-
+p4
 
