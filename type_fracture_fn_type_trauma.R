@@ -14,7 +14,19 @@ library(dplyr)
 
 setDT(ReccueilR)
 
+#here we filter the initial data
 dFractureByTrauma = ReccueilR[!is.na(Traumatisme)&!is.na(Fracture)]
+
+#defining order for "Traumatisme"  (/!\ if orientation=x order needs to be reversed)
+dFractureByTrauma$Traumatisme <- factor(
+                                dFractureByTrauma$Traumatisme, 
+                                levels=c(
+                                    "Agricole", 
+                                    "Sport",
+                                    "Chute", 
+                                    "AVP"
+                                  )
+                              )
 
 p1 = dFractureByTrauma %>%
   ggplot(
