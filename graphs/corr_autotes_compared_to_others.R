@@ -1,17 +1,19 @@
 #Type de Fracture en fonction du type de Traumatisme
 
 #prerequisite: importer le fichier Excel (.xslx) dans R, sous le nom de test1.xlsx
-install.packages("data.table")
-install.packages("stringr")
-install.packages("ggplot2")
-install.packages("dplyr")
-install.packages("gridExtra")
+# install.packages("data.table")
+# install.packages("stringr")
+# install.packages("ggplot2")
+# install.packages("dplyr")
+# install.packages("gridExtra")
 #on charge les donnÃ©es 
 library(data.table)
 library(stringr)
 library(ggplot2)
 library(dplyr)
+#for multigraph vizu
 library(gridExtra)
+library(cowplot)
 
 setDT(ReccueilR)
 
@@ -50,25 +52,26 @@ mydata = ReccueilR[
   N <- 1e4
   testcors <- data.frame(
                   TestName=character(),
-                  CorrWithAutoTest=integer(),
+                  Rho=integer(),
                   stringsAsFactors=FALSE
                 ) 
   
   #storing results in dataframe
-  testcors[1, ] <- list("Oxford",abs(corOxford * 100))
-  testcors[2, ] <- list("Womac", abs(corWomac*100))
-  testcors[3, ] <- list("Harris", abs(corHarris*100))
-  testcors[4, ] <- list("PMA", abs(corPMA * 100))
+  testcors[1, ] <- list("Oxford",abs(corOxford))
+  testcors[2, ] <- list("Womac", abs(corWomac))
+  testcors[3, ] <- list("Harris", abs(corHarris))
+  testcors[4, ] <- list("PMA", abs(corPMA))
   
   #plotting dataframe as histogram
   p0 = testcors %>%
-    ggplot(aes(x=TestName, y=CorrWithAutoTest)) +
+    ggplot(aes(x=TestName, y=Rho, label=round(Rho, 3))) +
     geom_bar(
-      aes(fill = CorrWithAutoTest),
+      aes(fill = Rho),
       stat='identity',
       orientation="x",
       colour="white"
     ) +
+    geom_text(size = 4, position = position_stack(vjust = 0.9), color="white") +
     labs (
       title= "Corrélation de l'auto-test aux autres tests",
       x="Tests Connus",
@@ -78,8 +81,48 @@ mydata = ReccueilR[
       legend.position = "right",
       axis.title.y = element_text(colour= "red")
     )
+
   
-# p0
+# Display 4 linear regression lines on 1 plot
+p0bis = mydata %>%
+  ggplot( aes(x=Autotest, y=Oxford)) +
+  geom_smooth(
+    color="darkgreen",
+    fill="darkgreen",
+    aes(x=Autotest, y=Oxford),
+    method="lm", 
+    se=TRUE, 
+    fullrange=FALSE, 
+    level=0.95
+  ) +   
+  geom_smooth(
+    color="darkblue",
+    fill="darkblue",
+    aes(x=Autotest, y=Womac),
+    method="lm", 
+    se=TRUE, 
+    fullrange=FALSE, 
+    level=0.95
+  ) +
+  geom_smooth(
+    color="darkred",
+    fill="darkred",
+    aes(x=Autotest, y=(-HarrisHS+100)),
+    method="lm", 
+    se=TRUE, 
+    fullrange=FALSE, 
+    level=0.95
+  ) +
+  geom_smooth(
+    color="darkorange",
+    fill="darkorange",
+    aes(x=Autotest, y=(-PMA+30)),
+    method="lm", 
+    se=TRUE, 
+    fullrange=FALSE, 
+    level=0.95
+  )
+
 
 # DISPLAY SCATTERING
 
@@ -94,14 +137,14 @@ ggplot( aes(x=Autotest, y=Oxford)) +
   ) +
   geom_smooth(
     color="darkgreen",
-    label="Oxford",
+    fill="darkgreen",
     aes(x=Autotest, y=Oxford),
-    method="auto", 
+    method="lm", 
     se=TRUE, 
     fullrange=FALSE, 
     level=0.95
   )
-# p1
+
 
 # Autotest x Womac
 p2 = mydata %>%
@@ -113,13 +156,50 @@ ggplot( aes(x=Autotest, y=Womac)) +
   ) +
   geom_smooth(
     color="darkblue",
+    fill="darkblue",
     aes(x=Autotest, y=Womac),
+    method="lm", 
+    se=TRUE, 
+    fullrange=FALSE, 
+    level=0.995
+  )
+
+
+
+# Autotest x Harris
+p3 = mydata %>%
+ggplot( aes(x=Autotest, y=-HarrisHS)) +
+  geom_point(
+    size=2, 
+    shape=17,
+    color="darkred"
+  ) +
+  geom_smooth(
+    color="darkred",
+    fill="darkred",
+    aes(x=Autotest, y=-HarrisHS),
     method="lm", 
     se=TRUE, 
     fullrange=FALSE, 
     level=0.95
   )
-# p2
 
+
+p4 = mydata %>%
+  ggplot( aes(x=Autotest, y=-PMA)) +
+  geom_point(
+    size=2, 
+    shape=17,
+    color="orange"
+  ) +
+  geom_smooth(
+    color="darkorange",
+    fill="darkorange",
+    aes(x=Autotest, y=-PMA),
+    method="lm", 
+    se=TRUE, 
+    fullrange=FALSE, 
+    level=0.95
+  )
 
 
