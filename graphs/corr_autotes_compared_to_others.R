@@ -81,7 +81,7 @@ mydata = ReccueilR[
       legend.position = "right",
       axis.title.y = element_text(colour= "red")
     )
-
+p0
   
 # Display 4 linear regression lines on 1 plot
 p0bis = mydata %>%
@@ -107,7 +107,7 @@ p0bis = mydata %>%
   geom_smooth(
     color="darkred",
     fill="darkred",
-    aes(x=Autotest, y=(-HarrisHS+100)),
+    aes(x=Autotest, y=(-HarrisHS)),
     method="lm", 
     se=FALSE, 
     fullrange=FALSE, 
@@ -116,13 +116,13 @@ p0bis = mydata %>%
   geom_smooth(
     color="darkorange",
     fill="darkorange",
-    aes(x=Autotest, y=(-PMA+30)),
+    aes(x=Autotest, y=(-PMA)),
     method="lm", 
     se=FALSE, 
     fullrange=FALSE, 
     level=0.95
   )
-
+p0bis
 
 # DISPLAY SCATTERING
 
