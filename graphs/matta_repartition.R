@@ -26,6 +26,11 @@ mydata = ReccueilR[
   &!is.na(Chirurgien)
 ]
 
+chirJunior = ReccueilR[Chirurgien == "Junior"]
+chirSenior = ReccueilR[Chirurgien == "Senior"]
+chirExpermente = ReccueilR[Chirurgien == "Expérimenté"]
+
+View(zob)
 dataset = ReccueilR[
   !is.na(Matta)
   &!is.na(Chirurgien)
@@ -33,12 +38,11 @@ dataset = ReccueilR[
 
 
 #score de matta en fonction de l'age du chirurgien
-p0 = generate_histogram_mata_expchir(mydata)
+matta_x_chir = generate_histogram_mata_expchir(mydata)
 # p0
 
 # score de matta en fonction du type de fracture
-p1 = generate_histogram_mata_fracture(mydata)
-# p1
+matta_x_fracture_global = generate_histogram_mata_fracture(mydata)
 
-p0
-p1
+fracture_x_chir = generate_histogram_fracture_expchir(mydata)
+

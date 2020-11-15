@@ -111,3 +111,50 @@ generate_histogram_mata_fracture <- function(dataset){
   
   return(plot)
 }
+
+generate_histogram_fracture_expchir <- function(dataset){
+
+  
+  #order by chirurgien custom
+  dataset$Chirurgien <- factor(
+    dataset$Chirurgien, 
+    levels=c(
+      "Junior", 
+      "Senior",
+      "Expérimenté"
+    )
+  )
+
+  
+  plot = dataset %>%
+    ggplot(aes(x=Chirurgien, fill=factor(
+      Fracture, 
+      #here we define the order of the stacked values
+      levels=c(
+        "T",
+        "colonne antérieure",
+        "transversale",
+        "paroi postérieure", 
+        "transversale et paroi postérieure",
+        "bi colonne"
+      )
+    )
+    )) +
+    geom_bar(
+      stat='count',
+      position="fill",
+      orientation="x",
+      colour="white"
+    ) +
+    labs (
+      title= "Type de Fracture en fonction de l'expérience du chirurgien",
+      x="Expérience du chirurgien",
+      y="%"
+    ) +
+    theme(
+      legend.position = "right",
+      axis.title.y = element_text(colour= "red")
+    )
+  
+  return(plot)
+}
