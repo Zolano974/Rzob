@@ -1,5 +1,7 @@
 #matta functions
 
+source("utils/theming_plots.R")
+
 display_matta <- function(matta){
   print("matta is : ")
   print(matta)
@@ -52,13 +54,12 @@ generate_histogram_mata_expchir <- function(dataset){
     labs (
       title= "Score de Matta en fonction de l'expérience du chirurgien",
       x="Expérience du chirurgien",
+      fill="Matta",
       y="%"
     ) +
-    theme(
-      legend.position = "right",
-      axis.title.y = element_text(colour= "red")
+    default_theming(
+      y_title_vjust = 0.5
     )
-  
   return(plot)
 }
 
@@ -101,12 +102,14 @@ generate_histogram_mata_fracture <- function(dataset){
     labs (
       title= "Répartition du score de Matta en fonction du type de fracture",
       x="Type de Fracture",
+      fill="Matta",
       y="%"
-    ) +
-    theme(
-      legend.position = "right",
-      axis.title.y = element_text(colour= "black"),
-      axis.text.x =  element_text(angle = 50,vjust=0.5),
+    ) + default_theming(
+        x_text_size = 8,
+        x_text_angle=50,
+        x_text_vjust = 0.5,
+        y_text_size=10,
+        y_title_vjust = 0.5,
     )
   
   return(plot)
@@ -148,12 +151,15 @@ generate_histogram_fracture_expchir <- function(dataset){
     ) +
     labs (
       title= "Type de Fracture en fonction de l'expérience du chirurgien",
+      fill= "Type de Fracture",
       x="Expérience du chirurgien",
       y="%"
     ) +
-    theme(
-      legend.position = "right",
-      axis.title.y = element_text(colour= "red")
+    default_theming(
+      x_text_angle=45,
+      x_text_vjust = 0.5,
+      y_text_size=10,
+      y_title_vjust = 0.5,
     )
   
   return(plot)
