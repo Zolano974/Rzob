@@ -1,5 +1,7 @@
 #functions for correlations between autotest and other tests
 
+source("utils/theming_plots.R")
+
 #scattering for Oxford x Autotest
 generate_scattering_autotest_oxford <- function(dataset){
   
@@ -168,10 +170,7 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
       x="Score",
       y="Corrélation de Spearman"
     ) +
-    theme(
-      legend.position = "right",
-      axis.title.y = element_text(colour= "red")
-    )
+    default_theming()
   
     return(plot)
 }

@@ -32,9 +32,7 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
       x="Nombre de Fractures",
       y="Type de traumatisme"
     ) +
-    theme(
-      legend.position = "right"
-    )
+    default_theming()
   
   return(plot)
 
@@ -70,10 +68,7 @@ generate_plot_fracture_by_age <- function(dataset){
       x="Classe d'âge",
       y="Nombre de fractures"
     ) +
-    theme(
-      legend.position = "right",
-      axis.title.y = element_text(colour= "red")
-    )
+    default_theming()
   
   return(plot)
 }
