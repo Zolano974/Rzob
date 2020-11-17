@@ -36,11 +36,11 @@ fulldata = ReccueilR[
 
 #keep only 4 scores + fracture type
 scoresdata = filter_dataset_score_fracture(fulldata)
-scoresdata
+# View(scoresdata)
 
 #STATS GLOBALE
 global_stats_table = calculate_global_stat_by_score(scoresdata)
-global_stats_table
+View(global_stats_table)
 
 #SOUS GROUPES PAR TYPE DE FRACTURE
 
@@ -72,17 +72,17 @@ transversale_paroipost_stats_table
 #Approche II -> un seul tableau
 
 mean_by_score <- apply(scores[,1:4],2,tapply, scoresdata$Fracture, mean)
-mean_by_score
+View(mean_by_score)
 
 median_by_score <- apply(scores[,1:4],2,tapply, scoresdata$Fracture, median)
-median_by_score
+View(median_by_score)
 
 #Boxplots
 
 oxford_bp = generate_score_boxplot(scoresdata, "Oxford")
 womac_bp = generate_score_boxplot(scoresdata, "Womac")
-harris_bp = generate_score_boxplot(scoresdata, "Oxford")
-pma_bp = generate_score_boxplot(scoresdata, "Oxford")
+harris_bp = generate_score_boxplot(scoresdata, "HarrisHS")
+pma_bp = generate_score_boxplot(scoresdata, "PMA")
 
 
 plot_grid(oxford_bp, womac_bp, harris_bp, pma_bp, labels=c("Oxford", "Womac", "Harris", "PMA"),ncol = 2, nrow = 2)

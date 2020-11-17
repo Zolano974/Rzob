@@ -170,7 +170,9 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
       x="Score",
       y="Corrélation de Spearman"
     ) +
-    default_theming()
+    default_theming(
+      y_title_angle=90
+    )
   
     return(plot)
 }
