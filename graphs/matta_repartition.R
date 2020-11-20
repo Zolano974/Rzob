@@ -46,6 +46,5 @@ matta_x_fracture_global = generate_histogram_mata_fracture(mydata)
 matta_x_fracture_global
 
 fracture_x_chir = generate_histogram_fracture_expchir(mydata)
-
 fracture_x_chir
 

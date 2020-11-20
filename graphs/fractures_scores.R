@@ -71,10 +71,10 @@ transversale_paroipost_stats_table
 
 #Approche II -> un seul tableau
 
-mean_by_score <- apply(scores[,1:4],2,tapply, scoresdata$Fracture, mean)
+mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
 View(mean_by_score)
 
-median_by_score <- apply(scores[,1:4],2,tapply, scoresdata$Fracture, median)
+median_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, median)
 View(median_by_score)
 
 #Boxplots
@@ -85,7 +85,7 @@ harris_bp = generate_score_boxplot(scoresdata, "HarrisHS")
 pma_bp = generate_score_boxplot(scoresdata, "PMA")
 
 
-plot_grid(oxford_bp, womac_bp, harris_bp, pma_bp, labels=c("Oxford", "Womac", "Harris", "PMA"),ncol = 2, nrow = 2)
+plot_grid(oxford_bp, womac_bp, harris_bp, pma_bp, labels=c(NA, NA, NA, NA),ncol = 2, nrow = 2)
 
 
 

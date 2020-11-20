@@ -1,7 +1,7 @@
 #Functions related to Fracture : 
 # Fracture repartition by age, traumatisme
 
-
+source("utils/theming_plots.R")
 #
 # Generate stacked histogram to display the repartition of fracture types according to trauma
 #
@@ -11,19 +11,19 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
   dataset$Traumatisme <- factor(
     dataset$Traumatisme, 
     levels=c(
-      "Agricole", 
-      "Sport",
+      "AVP",
       "Chute", 
-      "AVP"
+      "Sport",
+      "Agricole" 
     )
   )
 
   plot = dataset %>%
-    ggplot(
-      aes(y=Traumatisme, fill=Fracture, order=Fracture)) +
+    # ggplot(      aes(y=Traumatisme, fill=Fracture, order=Fracture)) +
+    ggplot(      aes(x=Traumatisme, fill=Fracture, order=Fracture)) +
     geom_bar(
       stat='count', 
-      orientation="y", 
+      orientation="x", 
       alpha=0.9,
       colour="white"
     ) +
@@ -32,7 +32,11 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
       x="Nombre de Fractures",
       y="Type de traumatisme"
     ) +
-    default_theming()
+    default_theming(
+      y_title_angle = 90,
+      title_size = 16,
+      legend_title_size = 14
+    )
   
   return(plot)
 
@@ -66,9 +70,14 @@ generate_plot_fracture_by_age <- function(dataset){
     labs (
       title= "Répartition des fractures en fonction de l'âge",
       x="Classe d'âge",
-      y="Nombre de fractures"
+      y="Nombre de fractures",
+      fill="Fracture"
     ) +
-    default_theming()
+    default_theming(
+      y_title_angle = 90,
+      title_size = 16,
+      legend_title_size = 14
+    )
   
   return(plot)
 }

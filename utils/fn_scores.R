@@ -1,4 +1,5 @@
 #functions related to score results
+source("utils/theming_plots.R")
 
 #keep only interesting columns
 filter_dataset_score_fracture <- function(dataset){

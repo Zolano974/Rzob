@@ -51,5 +51,5 @@ pHarris = generate_scattering_autotest_harris(mydata)
 # Autotest x PMA 
 pPMA =  generate_scattering_autotest_pma(mydata)
 
-plot_grid(pOxford, pWomac, pHarris, pPMA, labels=c("Oxford", "Womac", "Harris", "PMA"),ncol = 2, nrow = 2)
+plot_grid(pOxford, pWomac, pHarris, pPMA, labels=c(NA, NA, NA, NA),ncol = 2, nrow = 2)
 

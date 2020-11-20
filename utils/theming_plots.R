@@ -4,6 +4,7 @@ source("utils/theming_colors.R")
 default_theming <- function( 
     legend_position = "right",
     legend_title_size= 18,
+    title_size = 20,
     x_text_angle=0,
     x_text_size=12, 
     x_text_vjust=0,
@@ -24,6 +25,10 @@ default_theming <- function(
     panel.border= generate_panel_border(),
     panel.grid = element_line(),
     
+    title =  element_text(
+      size=title_size,
+      colour = "black"
+    ),
     #legend
     legend.title = element_text(
       size=legend_title_size,

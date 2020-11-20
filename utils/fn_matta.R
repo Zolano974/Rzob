@@ -58,7 +58,8 @@ generate_histogram_mata_expchir <- function(dataset){
       y="%"
     ) +
     default_theming(
-      y_title_vjust = 0.5
+      y_title_vjust = 0.5,
+      title_size = 16
     )
   return(plot)
 }
@@ -110,6 +111,7 @@ generate_histogram_mata_fracture <- function(dataset){
         x_text_vjust = 0.5,
         y_text_size=10,
         y_title_vjust = 0.5,
+        title_size = 16
     )
   
   return(plot)
@@ -160,6 +162,7 @@ generate_histogram_fracture_expchir <- function(dataset){
       x_text_vjust = 0.5,
       y_text_size=10,
       y_title_vjust = 0.5,
+      title_size = 16
     )
   
   return(plot)

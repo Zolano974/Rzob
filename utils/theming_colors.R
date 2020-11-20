@@ -5,5 +5,5 @@ color_dark_grey <- function(){
 }
 
 color_dark_purple <- function(){
-  return("#6926f0")
+  return("#343434")
 }
