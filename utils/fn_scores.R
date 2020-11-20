@@ -48,9 +48,25 @@ calculate_global_stat_by_score <- function(dataset){
 generate_score_boxplot <- function(dataset, column){
   plot = dataset %>%
     ggplot(aes_string(x=column, y="Fracture")) + 
-    geom_boxplot() +
+    geom_boxplot(
+      alpha=0.3,
+      color=color_boxplot_scores(column),
+      fill = fill_boxplot_scores(column)
+    ) +
     coord_flip() +
-    stat_summary(fun.y=mean, geom="point", shape=20, size=4)
+    stat_summary(fun.y=mean, geom="point", shape=20, size=4) +
+    # scale_fill_brewer(palette="BuPu")
+    default_theming(
+      x_title_size = 10,
+      x_text_size = 5,
+      x_text_angle = 45,
+      x_text_vjust = 0.5,
+      y_title_angle = 90,
+      y_title_size=13
+    )
+    # theme(
+    #   axis.text.x = element_text(angle=45, vjust=0.5)
+    # )
   return(plot)
 }
 
