@@ -108,6 +108,9 @@ generate_histogram_mata_fracture <- function(dataset){
       y="%"
     ) + 
     scale_fill_brewer(palette="BuPu") +
+    
+    # scale_fill_manual(values = c("#04c70a", "#fcff3d", "#FF0000")) #custom values
+    
     default_theming(
         x_text_size = 8,
         x_text_angle=50,
