@@ -57,6 +57,7 @@ generate_histogram_mata_expchir <- function(dataset){
       fill="Matta",
       y="%"
     ) +
+    scale_fill_brewer(palette="BuPu") +
     default_theming(
       y_title_vjust = 0.5,
       title_size = 16
@@ -105,7 +106,9 @@ generate_histogram_mata_fracture <- function(dataset){
       x="Type de Fracture",
       fill="Matta",
       y="%"
-    ) + default_theming(
+    ) + 
+    scale_fill_brewer(palette="BuPu") +
+    default_theming(
         x_text_size = 8,
         x_text_angle=50,
         x_text_vjust = 0.5,
@@ -117,53 +120,4 @@ generate_histogram_mata_fracture <- function(dataset){
   return(plot)
 }
 
-generate_histogram_fracture_expchir <- function(dataset){
 
-  
-  #order by chirurgien custom
-  dataset$Chirurgien <- factor(
-    dataset$Chirurgien, 
-    levels=c(
-      "Junior", 
-      "Senior",
-      "Expérimenté"
-    )
-  )
-
-  
-  plot = dataset %>%
-    ggplot(aes(x=Chirurgien, fill=factor(
-      Fracture, 
-      #here we define the order of the stacked values
-      levels=c(
-        "T",
-        "colonne antérieure",
-        "transversale",
-        "paroi postérieure", 
-        "transversale et paroi postérieure",
-        "bi colonne"
-      )
-    )
-    )) +
-    geom_bar(
-      stat='count',
-      position="fill",
-      orientation="x",
-      colour="white"
-    ) +
-    labs (
-      title= "Type de Fracture en fonction de l'expérience du chirurgien",
-      fill= "Type de Fracture",
-      x="Expérience du chirurgien",
-      y="%"
-    ) +
-    default_theming(
-      x_text_angle=45,
-      x_text_vjust = 0.5,
-      y_text_size=10,
-      y_title_vjust = 0.5,
-      title_size = 16
-    )
-  
-  return(plot)
-}

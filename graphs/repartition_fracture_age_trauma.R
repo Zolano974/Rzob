@@ -10,8 +10,11 @@ library(data.table)
 library(stringr)
 library(ggplot2)
 library(dplyr)
+library(tidyr)
+library(scales)
 
 source("utils/fn_fractures.R")
+source("utils/fn_count.R")
 
 setDT(ReccueilR)
 
@@ -24,8 +27,6 @@ mydata1 = ReccueilR[!is.na(Traumatisme)&!is.na(Fracture)]
 
 #generate plot
 fractureEnFonctionDuTrauma = generate_plot_fracture_by_traumatisme(mydata1)
-
-#display plot
 fractureEnFonctionDuTrauma
 
 # ----------------------------------------- #
@@ -35,5 +36,19 @@ fractureEnFonctionDuTrauma
 mydata2 = ReccueilR[!is.na(Age)&!is.na(Fracture)]
 
 fractureEnFonctionDeLage = generate_plot_fracture_by_age(mydata2)
-
 fractureEnFonctionDeLage
+
+# ----------------------------------------- #
+# I -Fracture en fonction de l'xp chir      #
+# ----------------------------------------- #
+
+mydata3 = ReccueilR[!is.na(Chirurgien)&!is.na(Fracture)]
+fracture_x_chir = generate_histogram_fracture_expchir(mydata3)
+fracture_x_chir
+
+
+# my_sandbox()
+
+
+
+

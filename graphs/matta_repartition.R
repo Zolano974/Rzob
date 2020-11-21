@@ -35,16 +35,19 @@ dataset = ReccueilR[
   &!is.na(Chirurgien)
 ]
 
+# --------------------------------------------------  #
+# I - Score de Matta en fonction de l'exp chirurgien  #
+# --------------------------------------------------  #
 
-#score de matta en fonction de l'age du chirurgien
 matta_x_chir = generate_histogram_mata_expchir(mydata)
 matta_x_chir
 # p0
 
-# score de matta en fonction du type de fracture
+# --------------------------------------------------  #
+# II - Score de Matta en fonction du type de fracture #
+# --------------------------------------------------  #
+
 matta_x_fracture_global = generate_histogram_mata_fracture(mydata)
 matta_x_fracture_global
 
-fracture_x_chir = generate_histogram_fracture_expchir(mydata)
-fracture_x_chir
 
