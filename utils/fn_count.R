@@ -19,6 +19,6 @@ percentage_fractures_by_expchir <- function (expchir, fracture, dataset){
     return(0)
   }
   
-  return(round((total / occurrences), 2))
+  return(round((total / occurrences), 2) )
 
 }

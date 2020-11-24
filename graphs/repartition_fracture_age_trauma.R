@@ -47,7 +47,7 @@ fracture_x_chir = generate_histogram_fracture_expchir(mydata3)
 fracture_x_chir
 
 
-# my_sandbox()
+my_sandbox()
 
 
 

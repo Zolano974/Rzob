@@ -43,6 +43,8 @@ generate_histogram_mata_expchir <- function(dataset){
     )
   )
   
+  # label=round(Rho, 3)
+  
   plot = dataset %>%
     ggplot(aes(x=Chirurgien, fill=MattaFull)) +
     geom_bar(
