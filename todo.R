@@ -2,24 +2,18 @@
 
 #répartition globale 
 
- # [V] -> répartition des cas par type de trauma [V]
+#repartition globale 
 
-# [V] -> répartition des cas par type de fracture
+ # -> virer l'échelle a gauche
+ # -> afficher en % le comptage et l'échelle (ajout de colonne dynamique)
 
-# -> repartition des cas par voie d'abord 
+#scores : 
 
-# -> répartition des cas par XP chirurgien
+  # -> ecar-type dans les tableaux, pas mediane
 
-# -> répartition des cas par score MATTA
+#autotest 
 
-
-
-# Boxplots 
-
-# [V]-> en haut a droite le haut de la légende est mangé
-
-# [V]-> il faudrait les exporter 2 par 2 avec des légendes + lisibles
-
+  # ->  graph 4 corr sperarman : appliquer code couleur
 
 #SF36
 

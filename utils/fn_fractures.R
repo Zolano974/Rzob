@@ -2,6 +2,20 @@
 # Fracture repartition by age, traumatisme
 
 source("utils/theming_plots.R")
+
+
+factor_fracture_x_levels <- function(){
+  return(c(
+      "PP", 
+      "CA",
+      "TR",
+      "T",
+      "TR-PP",
+      "BC"
+    )
+  )
+}
+
 #
 # Generate stacked histogram to display the repartition of fracture types according to trauma
 #

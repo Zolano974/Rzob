@@ -150,15 +150,14 @@ generate_plot_patients_repartition_by_xp_chir <- function(dataset) {
     ggplot(      aes(x=Chirurgien)
     ) +
     geom_bar(
-      # position=
-      stat='count', 
+      stat='count',
       orientation="x", 
       alpha=0.9,
       colour="white",
       fill=color_generic_stats(),
       width=0.7
     ) +
-    # scale_y_continuous(labels=scales::percent) +
+    scale_y_continuous(labels=scales::percent) +
     labs (
       title= "Répartition des patients en fonction de l'expérience du Chirurgien",
       y="Nombre de cas",

@@ -1,4 +1,5 @@
 #functions related to score results
+source("utils/fn_fractures.R")
 source("utils/theming_plots.R")
 
 #keep only interesting columns
@@ -49,11 +50,16 @@ generate_score_boxplot <- function(dataset, column){
   
   dataset$FractureX <- as.character(dataset$Fracture)
   dataset$FractureX[dataset$Fracture == "paroi postérieure"] <- "PP"
-  dataset$FractureX[dataset$Fracture == "transversale et paroi postérieure"] <- "TRPP"
+  dataset$FractureX[dataset$Fracture == "transversale et paroi postérieure"] <- "TR-PP"
   dataset$FractureX[dataset$Fracture == "transversale"] <- "TR"
   dataset$FractureX[dataset$Fracture == "bi colonne"] <- "BC"
   dataset$FractureX[dataset$Fracture == "T"] <- "T"
   dataset$FractureX[dataset$Fracture == "colonne antérieure"] <- "CA"
+  
+  dataset$FractureX <- factor(
+    dataset$FractureX, 
+    levels=factor_fracture_x_levels()
+  )
   
   plot = dataset %>%
     ggplot(aes_string(x=column, y="FractureX")) + 

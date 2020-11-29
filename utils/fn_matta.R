@@ -1,5 +1,6 @@
 #matta functions
 
+source("utils/fn_fractures.R")
 source("utils/theming_plots.R")
 source("utils/theming_colors.R")
 
@@ -79,7 +80,7 @@ generate_histogram_mata_fracture <- function(dataset){
   #replace Fracture by shortcut
   dataset$FractureX <- as.character(dataset$Fracture)
   dataset$FractureX[dataset$Fracture == "paroi postérieure"] <- "PP"
-  dataset$FractureX[dataset$Fracture == "transversale et paroi postérieure"] <- "TRPP"
+  dataset$FractureX[dataset$Fracture == "transversale et paroi postérieure"] <- "TR-PP"
   dataset$FractureX[dataset$Fracture == "transversale"] <- "TR"
   dataset$FractureX[dataset$Fracture == "bi colonne"] <- "BC"
   dataset$FractureX[dataset$Fracture == "T"] <- "T"
@@ -99,14 +100,7 @@ generate_histogram_mata_fracture <- function(dataset){
     ggplot(aes(x=factor(
       FractureX, 
       #here we define the order of the stacked values
-      levels=c(
-        "T",
-        "CA",
-        "TR",
-        "PP", 
-        "TR-PP",
-        "BC"
-      )
+      levels=factor_fracture_x_levels(),
     ), fill=MattaFull)) +
     geom_bar(
       stat='count',
