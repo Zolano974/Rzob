@@ -10,11 +10,11 @@ generate_scattering_autotest_oxford <- function(dataset){
     geom_point(
       size=2, 
       shape=20,
-      color="darkgreen"
+      color=color_boxplot_scores("Oxford"),
     ) +
     geom_smooth(
-      color="darkgreen",
-      fill="darkgreen",
+      color=color_boxplot_scores("Oxford"),
+      fill=color_boxplot_scores("Oxford"),
       aes(x=Autotest, y=Oxford),
       method="lm", 
       se=TRUE, 
@@ -32,11 +32,11 @@ generate_scattering_autotest_womac <- function(dataset){
     geom_point(
       size=2, 
       shape=22,
-      color="darkblue"
+      color=color_boxplot_scores("Womac")
     ) +
     geom_smooth(
-      color="darkblue",
-      fill="darkblue",
+      color=color_boxplot_scores("Womac"),
+      fill=color_boxplot_scores("Womac"),
       aes(x=Autotest, y=Womac),
       method="lm", 
       se=TRUE, 
@@ -53,11 +53,11 @@ generate_scattering_autotest_harris <- function(dataset){
     geom_point(
       size=2, 
       shape=17,
-      color="darkred"
+      color=color_boxplot_scores("HarrisHS")
     ) +
     geom_smooth(
-      color="darkred",
-      fill="darkred",
+      color=color_boxplot_scores("HarrisHS"),
+      fill=color_boxplot_scores("HarrisHS"),
       aes(x=Autotest, y=-HarrisHS),
       method="lm", 
       se=TRUE, 
@@ -74,11 +74,11 @@ generate_scattering_autotest_pma <- function(dataset){
     geom_point(
       size=2, 
       shape=17,
-      color="orange"
+      color=color_boxplot_scores("PMA")
     ) +
     geom_smooth(
-      color="darkorange",
-      fill="darkorange",
+      color=color_boxplot_scores("PMA"),
+      fill=color_boxplot_scores("PMA"),
       aes(x=Autotest, y=-PMA),
       method="lm", 
       se=TRUE, 
@@ -95,8 +95,8 @@ generate_4_regression_lines_same_graph <- function(dataset){
   plot = dataset %>%
     ggplot( aes(x=Autotest, y=Oxford)) +
     geom_smooth(
-      color="darkgreen",
-      fill="darkgreen",
+      color=color_boxplot_scores("Oxford"),
+      fill=color_boxplot_scores("Oxford"),
       aes(x=Autotest, y=Oxford),
       method="lm", 
       se=FALSE, 
@@ -104,8 +104,8 @@ generate_4_regression_lines_same_graph <- function(dataset){
       level=0.95
     ) +   
     geom_smooth(
-      color="darkblue",
-      fill="darkblue",
+      color=color_boxplot_scores("Womac"),
+      fill=color_boxplot_scores("Womac"),
       aes(x=Autotest, y=Womac),
       method="lm", 
       se=FALSE, 
@@ -113,8 +113,8 @@ generate_4_regression_lines_same_graph <- function(dataset){
       level=0.95
     ) +
     geom_smooth(
-      color="darkred",
-      fill="darkred",
+      color=color_boxplot_scores("HarrisHS"),
+      fill=color_boxplot_scores("HarrisHS"),
       aes(x=Autotest, y=(-HarrisHS)),
       method="lm", 
       se=FALSE, 
@@ -122,8 +122,8 @@ generate_4_regression_lines_same_graph <- function(dataset){
       level=0.95
     ) +
     geom_smooth(
-      color="darkorange",
-      fill="darkorange",
+      color=color_boxplot_scores("PMA"),
+      fill=color_boxplot_scores("PMA"),
       aes(x=Autotest, y=(-PMA)),
       method="lm", 
       se=FALSE, 

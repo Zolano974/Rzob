@@ -38,7 +38,6 @@ plot_linreg_all_scores
 
 # DISPLAY SCATTERING
 
-
 # Autotest x Oxford
 pOxford = generate_scattering_autotest_oxford(mydata)
 

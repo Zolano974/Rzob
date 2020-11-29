@@ -46,8 +46,17 @@ calculate_global_stat_by_score <- function(dataset){
 }
 
 generate_score_boxplot <- function(dataset, column){
+  
+  dataset$FractureX <- as.character(dataset$Fracture)
+  dataset$FractureX[dataset$Fracture == "paroi postérieure"] <- "PP"
+  dataset$FractureX[dataset$Fracture == "transversale et paroi postérieure"] <- "TRPP"
+  dataset$FractureX[dataset$Fracture == "transversale"] <- "TR"
+  dataset$FractureX[dataset$Fracture == "bi colonne"] <- "BC"
+  dataset$FractureX[dataset$Fracture == "T"] <- "T"
+  dataset$FractureX[dataset$Fracture == "colonne antérieure"] <- "CA"
+  
   plot = dataset %>%
-    ggplot(aes_string(x=column, y="Fracture")) + 
+    ggplot(aes_string(x=column, y="FractureX")) + 
     geom_boxplot(
       alpha=0.3,
       color=color_boxplot_scores(column),
@@ -57,15 +66,19 @@ generate_score_boxplot <- function(dataset, column){
     stat_summary(fun.y=mean, geom="point", shape=20, size=4) +
     # scale_fill_brewer(palette="BuPu")
     default_theming(
-      x_title_size = 10,
-      x_text_size = 5,
+      x_title_size = 0,
+      x_text_size = 10,
       x_text_angle = 45,
       x_text_vjust = 0.5,
       y_title_angle = 90,
-      y_title_size=13
-    )
+      y_title_size=13,
+      y_text_vjust = 0.5
+    ) 
+    # labs (
+    #   x="Fracture",
+    # ) 
     # theme(
-    #   axis.text.x = element_text(angle=45, vjust=0.5)
+      # axis.text.x = element_text(angle=45, vjust=0.5)
     # )
   return(plot)
 }

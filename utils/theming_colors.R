@@ -8,6 +8,13 @@ color_dark_purple <- function(){
   return("#343434")
 }
 
+color_generic_stats <- function(){
+  return("#3648bf")
+}
+
+palette_matta <- function(){
+  return("BuPu")
+}
 
 color_boxplot_scores <- function(scorename){
   if(scorename == "Oxford"){

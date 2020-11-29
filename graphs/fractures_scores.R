@@ -86,7 +86,8 @@ harris_bp = generate_score_boxplot(scoresdata, "HarrisHS")
 pma_bp = generate_score_boxplot(scoresdata, "PMA")
 
 
-plot_grid(oxford_bp, womac_bp, harris_bp, pma_bp, labels=c(NA, NA, NA, NA),ncol = 2, nrow = 2)
+plot_grid(oxford_bp, womac_bp, labels=c(NA, NA),ncol = 2, nrow = 1)
+plot_grid(harris_bp, pma_bp, labels=c(NA, NA),ncol = 2, nrow = 1)
 
 
 

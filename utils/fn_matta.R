@@ -1,6 +1,7 @@
 #matta functions
 
 source("utils/theming_plots.R")
+source("utils/theming_colors.R")
 
 display_matta <- function(matta){
   print("matta is : ")
@@ -53,13 +54,14 @@ generate_histogram_mata_expchir <- function(dataset){
       orientation="x",
       colour="white"
     ) +
+    scale_y_continuous(labels=scales::percent) +
     labs (
       title= "Score de Matta en fonction de l'expérience du chirurgien",
       x="Expérience du chirurgien",
       fill="Matta",
-      y="%"
+      y=""
     ) +
-    scale_fill_brewer(palette="BuPu") +
+    scale_fill_brewer(palette=palette_matta()) +
     default_theming(
       y_title_vjust = 0.5,
       title_size = 16
@@ -74,6 +76,15 @@ generate_histogram_mata_fracture <- function(dataset){
   dataset$MattaFull[dataset$Matta == "2"] <- "Satisfaisant"
   dataset$MattaFull[dataset$Matta == "3"] <- "Non Satisfaisant"
   
+  #replace Fracture by shortcut
+  dataset$FractureX <- as.character(dataset$Fracture)
+  dataset$FractureX[dataset$Fracture == "paroi postérieure"] <- "PP"
+  dataset$FractureX[dataset$Fracture == "transversale et paroi postérieure"] <- "TRPP"
+  dataset$FractureX[dataset$Fracture == "transversale"] <- "TR"
+  dataset$FractureX[dataset$Fracture == "bi colonne"] <- "BC"
+  dataset$FractureX[dataset$Fracture == "T"] <- "T"
+  dataset$FractureX[dataset$Fracture == "colonne antérieure"] <- "CA"
+  
   #order by matta custom
   dataset$MattaFull <- factor(
     dataset$MattaFull, 
@@ -86,15 +97,15 @@ generate_histogram_mata_fracture <- function(dataset){
   
   plot = dataset %>%
     ggplot(aes(x=factor(
-      Fracture, 
+      FractureX, 
       #here we define the order of the stacked values
       levels=c(
         "T",
-        "colonne antérieure",
-        "transversale",
-        "paroi postérieure", 
-        "transversale et paroi postérieure",
-        "bi colonne"
+        "CA",
+        "TR",
+        "PP", 
+        "TR-PP",
+        "BC"
       )
     ), fill=MattaFull)) +
     geom_bar(
@@ -103,18 +114,17 @@ generate_histogram_mata_fracture <- function(dataset){
       orientation="x",
       colour="white"
     ) +
+    scale_y_continuous(labels=scales::percent) +
     labs (
       title= "Répartition du score de Matta en fonction du type de fracture",
       x="Type de Fracture",
       fill="Matta",
-      y="%"
+      y=""
     ) + 
-    scale_fill_brewer(palette="BuPu") +
-    
+    scale_fill_brewer(palette=palette_matta()) +
     # scale_fill_manual(values = c("#04c70a", "#fcff3d", "#FF0000")) #custom values
-    
     default_theming(
-        x_text_size = 8,
+        x_text_size = 12,
         x_text_angle=50,
         x_text_vjust = 0.5,
         y_text_size=10,
