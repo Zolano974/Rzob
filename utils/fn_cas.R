@@ -104,7 +104,7 @@ generate_plot_patients_repartition_by_traumatisme <- function(dataset) {
       fill=color_generic_stats(),
       width=0.7
     ) +
-    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black") +
+    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
       title= "Répartition des patients en fonction du type de trauma",
       y="Nombre de cas",
@@ -112,6 +112,7 @@ generate_plot_patients_repartition_by_traumatisme <- function(dataset) {
     ) +
     default_theming(
       y_title_angle = 90,
+      x_text_size = 15, 
       title_size = 14,
       legend_title_size = 12,
       y_text_size = 0,
@@ -156,7 +157,7 @@ generate_plot_patients_repartition_by_fracture <- function(dataset){
       fill=color_generic_stats(),
       width=0.7
     ) +
-    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black") +
+    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black",size=6) +
     labs (
       title= "Répartition des patients en fonction du type de fracture",
       y="Nombre de cas",
@@ -164,6 +165,7 @@ generate_plot_patients_repartition_by_fracture <- function(dataset){
     ) +
     default_theming(
       y_title_angle = 90,
+      x_text_size=15,
       title_size = 14,
       legend_title_size = 12,
       y_text_size = 0,
@@ -204,7 +206,7 @@ generate_plot_patients_repartition_by_voie_abord <- function(dataset) {
       fill=color_generic_stats(),
       width=0.7
     ) +
-    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black") +
+    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
       title= "Répartition des patients en fonction de la voie d'abord",
       y="Nombre de cas",
@@ -212,6 +214,7 @@ generate_plot_patients_repartition_by_voie_abord <- function(dataset) {
     ) +
     default_theming(
       y_title_angle = 90,
+      x_text_size=15,
       title_size = 14,
       legend_title_size = 12,
       y_text_size = 0,
@@ -250,7 +253,7 @@ generate_plot_patients_repartition_by_xp_chir <- function(dataset) {
       fill=color_generic_stats(),
       width=0.7
     ) +
-    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black") +
+    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
       title= "Répartition des patients en fonction de l'expérience du chirurgien",
       y="Nombre de cas",
@@ -258,6 +261,7 @@ generate_plot_patients_repartition_by_xp_chir <- function(dataset) {
     ) +
     default_theming(
       y_title_angle = 90,
+      x_text_size = 17,
       title_size = 14,
       legend_title_size = 12,
       y_text_size = 0,
@@ -297,14 +301,15 @@ generate_plot_patients_repartition_by_matta <- function(dataset) {
       fill=color_generic_stats(),
       width=0.7
     ) +
-    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black") +
+    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
-      title= "Répartition des patients en fonction de l'expérience du chirurgien",
+      title= "Répartition des patients en fonction du critère de Matta",
       y="Nombre de cas",
-      x="Expérience du Chirurgien"
+      x="Matta"
     ) +
     default_theming(
       y_title_angle = 90,
+      x_text_size=17,
       title_size = 14,
       legend_title_size = 12,
       y_text_size = 0,

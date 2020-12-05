@@ -9,6 +9,7 @@ library(cowplot)
 source("utils/fn_fractures.R")
 source("utils/fn_scores.R")
 source("utils/fn_cas.R")
+source("utils/fn_matta.R")
 
 setDT(ReccueilR)
 
@@ -32,16 +33,16 @@ setDT(ReccueilR)
     p2
     
     # -> repartition des cas par voie d'abord 
-    p2bis = generate_plot_patients_repartition_by_voie_abord(generaldata)
-    p2bis
-    
-    # -> répartition des cas par XP chirurgien
-    p3 = generate_plot_patients_repartition_by_xp_chir(generaldata)
+    p3 = generate_plot_patients_repartition_by_voie_abord(generaldata)
     p3
     
-    # -> répartition des cas par score MATTA
-    p4 = generate_plot_patients_repartition_by_matta(generaldata)
+    # -> répartition des cas par XP chirurgien
+    p4 = generate_plot_patients_repartition_by_xp_chir(generaldata)
     p4
+    
+    # -> répartition des cas par score MATTA
+    p5 = generate_plot_patients_repartition_by_matta(generaldata)
+    p5
 
 # II - Repartition Fractures
     
@@ -53,7 +54,7 @@ setDT(ReccueilR)
     fracturedata1 = ReccueilR[!is.na(Traumatisme)&!is.na(Fracture)]
     
     #generate plot
-    fractureEnFonctionDuTrauma = generate_plot_fracture_by_traumatisme(fracturedata)
+    fractureEnFonctionDuTrauma = generate_plot_fracture_by_traumatisme(fracturedata1)
     fractureEnFonctionDuTrauma
     
     # ----------------------------------------- #
@@ -113,49 +114,24 @@ setDT(ReccueilR)
     ]
     
     
-    
     #keep only 4 scores + fracture type
     scoresdata = filter_dataset_score_fracture(scoredata)
-    # View(scoresdata)
+    View(scoresdata)
     
     #STATS GLOBALE
     global_stats_table = calculate_global_stat_by_score(scoresdata)
+    global_stats_table
     # View(global_stats_table)
     
     #SOUS GROUPES PAR TYPE DE FRACTURE
     
-    #APPROCHE I -> 1 tableau pour chaque type de fracture
-    scores_t_data <- scoresdata[Fracture == "T"]
-    T_stats_table = calculate_global_stat_by_score(scores_t_data)
-    T_stats_table
-    
-    bicolonne_data <- scoresdata[Fracture == "bi colonne"]
-    bicolonne_stats_table = calculate_global_stat_by_score(bicolonne_data)
-    bicolonne_stats_table
-    
-    colonneanterieure_data <- scoresdata[Fracture == "colonne antérieure"]
-    colonneanterieure_stats_table = calculate_global_stat_by_score(colonneanterieure_data)
-    colonneanterieure_stats_table
-    
-    paroiposterieure_data <- scoresdata[Fracture == "paroi postérieure"]
-    paroiposterieure_stats_table = calculate_global_stat_by_score(paroiposterieure_data)
-    paroiposterieure_stats_table
-    
-    transversale_data <- scoresdata[Fracture == "transversale"]
-    transversale_stats_table = calculate_global_stat_by_score(transversale_data)
-    transversale_stats_table
-    
-    transversale_paroipost_data <- scoresdata[Fracture == "transversale et paroi postérieure"]
-    transversale_paroipost_stats_table = calculate_global_stat_by_score(transversale_paroipost_data)
-    transversale_paroipost_stats_table
-    
     #Approche II -> un seul tableau
     
-    mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
-    # View(mean_by_score)
+    # mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
+    # mean_by_score
     
     sd_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, sd)
-    # View(median_by_score)
+    sd_by_score
     
     #Boxplots
     
@@ -164,7 +140,6 @@ setDT(ReccueilR)
     womac_bp = generate_score_boxplot(scoresdata, "Womac")
     harris_bp = generate_score_boxplot(scoresdata, "HarrisHS")
     pma_bp = generate_score_boxplot(scoresdata, "PMA")
-    
     
     plot_grid(oxford_bp, womac_bp, labels=c(NA, NA),ncol = 2, nrow = 1)
     plot_grid(harris_bp, pma_bp, labels=c(NA, NA),ncol = 2, nrow = 1)

@@ -229,7 +229,7 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
   
   #plotting dataframe as histogram
   plot = testcors %>%
-    ggplot(aes(x=TestName, y=Rho, label=round(Rho, 3))) +
+    ggplot(aes(x=TestName, y=Rho, label=paste("ρ=",round(Rho, 3)))) +
     geom_bar(
       aes(fill = TestName),
       stat='identity',

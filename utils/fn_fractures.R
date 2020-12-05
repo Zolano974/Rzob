@@ -150,7 +150,8 @@ generate_histogram_fracture_expchir <- function(dataset){
       stat='count',
       position="fill",
       orientation="x",
-      colour="white"
+      colour="white",
+      width=0.7
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (
