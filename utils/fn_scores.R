@@ -5,7 +5,7 @@ source("utils/theming_plots.R")
 #keep only interesting columns
 filter_dataset_score_fracture <- function(dataset){
   keep_cols <- c("Oxford","Womac", "HarrisHS", "PMA", "Fracture")
-  scores <- fulldata[, keep_cols, with = FALSE]
+  scores <- dataset[, keep_cols, with = FALSE]
   return(scores)
 }
 
@@ -14,8 +14,8 @@ init_empty_result_dataset <- function(){
   N <- 1e4
   dataset <- data.frame(
     TestName=character(),
-    Mean=integer(),
-    Median=integer(),
+    Moyenne=integer(),
+    EcartType=integer(),
     stringsAsFactors=FALSE
   )
   return(dataset)
@@ -31,17 +31,17 @@ calculate_global_stat_by_score <- function(dataset){
   mean_pma = mean(dataset$PMA)
   
   #median
-  median_oxford = median(dataset$Oxford)
-  median_womac = median(dataset$Womac)
-  median_harris = median(dataset$HarrisHS)
-  median_pma = median(dataset$PMA)
+  sd_oxford = sd(dataset$Oxford)
+  sd_womac = sd(dataset$Womac)
+  sd_harris = sd(dataset$HarrisHS)
+  sd_pma = sd(dataset$PMA)
   
   result = init_empty_result_dataset()
   
-  result[1, ] <- list("Oxford",round(mean_oxford, 2), round(median_oxford, 2))
-  result[2, ] <- list("Womac",round(mean_womac, 2), round(median_womac, 2))
-  result[3, ] <- list("HarrisHS",round(mean_harris, 2), round(median_harris, 2))
-  result[4, ] <- list("PMA",round(mean_pma, 2), round(median_pma, 2))
+  result[1, ] <- list("Oxford",round(mean_oxford, 2), round(sd_oxford, 2))
+  result[2, ] <- list("Womac",round(mean_womac, 2), round(sd_womac, 2))
+  result[3, ] <- list("HarrisHS",round(mean_harris, 2), round(sd_harris, 2))
+  result[4, ] <- list("PMA",round(mean_pma, 2), round(sd_pma, 2))
   
   return(result)
 }

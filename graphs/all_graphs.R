@@ -154,7 +154,7 @@ setDT(ReccueilR)
     mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
     # View(mean_by_score)
     
-    median_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, median)
+    sd_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, sd)
     # View(median_by_score)
     
     #Boxplots
