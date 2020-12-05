@@ -190,20 +190,9 @@ setDT(ReccueilR)
     plot_all_corr
     
     #linear regression autotest vs other scores
-    
-    # Autotest x Oxford
-    pOxford = generate_scattering_autotest_oxford(mydata)
-    
-    # Autotest x Womac
-    pWomac = generate_scattering_autotest_womac(mydata)
-    
-    # Autotest x Harris
-    pHarris = generate_scattering_autotest_harris(mydata)
-    
-    # Autotest x PMA 
-    pPMA =  generate_scattering_autotest_pma(mydata)
-    
-    plot_grid(pOxford, pWomac, pHarris, pPMA, labels=c(NA, NA, NA, NA),ncol = 2, nrow = 2)
+    grid_linear_reg = generator_lineareg_plot_grid_autotest_vs_others(autotestdata)
+    grid_linear_reg
+
     
     
     

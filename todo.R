@@ -15,7 +15,7 @@
 
   # [OK] ->  graph 4 corr sperarman : appliquer code couleur
 
-  # -> graph 4 regressions lineaires des scores : revoir legende (virer autotest) et theme
+  # [OK] -> graph 4 regressions lineaires des scores : revoir legende (virer autotest) et theme
 
 #SF36
 

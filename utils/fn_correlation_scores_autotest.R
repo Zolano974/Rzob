@@ -21,7 +21,13 @@ generate_scattering_autotest_oxford <- function(dataset){
       se=TRUE, 
       fullrange=FALSE, 
       level=0.995
-    )
+    ) + 
+    labs (
+      title= "",
+      y="",
+      x="Oxford"
+    ) +
+    default_theming()
   
   return(plot)
 }
@@ -43,7 +49,13 @@ generate_scattering_autotest_womac <- function(dataset){
       se=TRUE, 
       fullrange=FALSE, 
       level=0.995
-    )
+    ) + 
+    labs (
+      title= "",
+      y="",
+      x="Womac"
+    ) +
+    default_theming()
   return(plot)
 } 
 
@@ -64,7 +76,13 @@ generate_scattering_autotest_harris <- function(dataset){
       se=TRUE, 
       fullrange=FALSE, 
       level=0.995
-    )
+    ) + 
+    labs (
+      title= "",
+      y="",
+      x="Harris HS"
+    ) +
+    default_theming()
   return(plot)
 } 
 
@@ -85,9 +103,52 @@ generate_scattering_autotest_pma <- function(dataset){
       se=TRUE, 
       fullrange=FALSE, 
       level=0.995
-    )
+    ) + 
+    labs (
+      title= "",
+      y="",
+      x="PMA"
+    ) +
+    default_theming()
   return(plot)
 } 
+
+
+generator_lineareg_plot_grid_autotest_vs_others <- function(dataset){
+  
+  # Autotest x Oxford
+  pOxford = generate_scattering_autotest_oxford(dataset)
+  
+  # Autotest x Womac
+  pWomac = generate_scattering_autotest_womac(dataset)
+  
+  # Autotest x Harris
+  pHarris = generate_scattering_autotest_harris(dataset)
+  
+  # Autotest x PMA 
+  pPMA =  generate_scattering_autotest_pma(dataset)
+  
+  title <- ggdraw() +
+    draw_label(
+      "Corrélation des résultats de l'Autotest aux autres scores",
+      x = 0,
+      hjust = 0,
+      vjust=0.5
+    ) +
+    theme(
+      plot.margin = margin(0, 0, 0, 7)
+    )
+  
+  pgrid = plot_grid(pOxford, pWomac, pHarris, pPMA, labels=c(NA, NA, NA, NA),ncol = 2, nrow = 2)
+  
+  plot = plot_grid(
+    title, pgrid,
+    labels=c(NA, NA),
+    ncol=1, 
+    rel_heights = c(0.1, 1)
+  )
+  return(plot)
+}
 
 
 #graph with linear regression lines for each score
