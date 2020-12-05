@@ -1,6 +1,7 @@
 #functions for correlations between autotest and other tests
 
 source("utils/theming_plots.R")
+source("utils/theming_colors.R")
 
 #scattering for Oxford x Autotest
 generate_scattering_autotest_oxford <- function(dataset){
@@ -155,14 +156,26 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
   testcors[3, ] <- list("Harris", abs(corHarris))
   testcors[4, ] <- list("PMA", abs(corPMA))
   
+  testcors$TestName <- factor(
+    testcors$TestName, 
+    levels=c(
+      "Oxford",
+      "Womac", 
+      "Harris",
+      "PMA" 
+    )
+  )
+  
   #plotting dataframe as histogram
   plot = testcors %>%
     ggplot(aes(x=TestName, y=Rho, label=round(Rho, 3))) +
     geom_bar(
-      aes(fill = Rho),
+      aes(fill = TestName),
       stat='identity',
       orientation="x",
-      colour="white"
+      colour="white",
+      alpha=0.8,
+      width=0.7
     ) +
     geom_text(size = 4, position = position_stack(vjust = 0.9), color="white") +
     labs (
@@ -170,8 +183,17 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
       x="Score",
       y="Corrélation de Spearman"
     ) +
+    scale_fill_manual(
+      values = c(
+        color_boxplot_scores("Oxford"), 
+        color_boxplot_scores("Womac"),
+        color_boxplot_scores("HarrisHS"), 
+        color_boxplot_scores("PMA")
+      )
+    )+ #custom values
     default_theming(
-      y_title_angle=90
+      y_title_angle=90,
+      legend_position = "none"
     )
   
     return(plot)
