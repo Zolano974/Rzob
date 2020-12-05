@@ -1,4 +1,16 @@
 #ALL
+library(data.table)
+library(stringr)
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+library(cowplot)
+
+source("utils/fn_fractures.R")
+source("utils/fn_scores.R")
+source("utils/fn_cas.R")
+
+setDT(ReccueilR)
 
 # I - Global repartition des cas
 

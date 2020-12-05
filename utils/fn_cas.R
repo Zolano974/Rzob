@@ -1,34 +1,57 @@
 source("utils/theming_plots.R")
 source("utils/theming_colors.R")
+
+#calculate the % of the given trauma over the given dataset
+percentage_trauma <- function(dataset, trauma){
+  
+  total = nrow(dataset)
+  
+  t_trauma <- quote(trauma)
+  occurrences = nrow(dataset[Traumatisme == eval(t_trauma)])
+  
+  if(occurrences == 0){
+    return(0)
+  }
+  return(round((occurrences / total), 3) *100 )
+
+}
+
 #
 # Generate stacked histogram to display the repartition of fracture types according to trauma
 #
 generate_plot_patients_repartition_by_traumatisme <- function(dataset) {
   
-  #defining order for "Traumatisme"  (/!\ if orientation=x order needs to be reversed)
-  dataset$Traumatisme <- factor(
-    dataset$Traumatisme, 
-    levels=c(
-      "AVP",
-      "Chute", 
-      "Sport",
-      "Agricole" 
-    )
+  N <- 1e4
+  plotdataset <- data.frame(
+    Traumatisme=character(),
+    Percentage=integer(),
+    stringsAsFactors=FALSE
   )
   
-  plot = dataset %>%
-    ggplot(      aes(x=Traumatisme)
-    ) +
-    geom_bar(
-      # position=
-      stat='count', 
-      orientation="x", 
-      alpha=0.9,
-      colour="white",
+  plotdataset[1, ] <- list("AVP", percentage_trauma(dataset, "AVP"))
+  plotdataset[2, ] <- list("Chute", percentage_trauma(dataset, "Chute"))
+  plotdataset[3, ] <- list("Sport", percentage_trauma(dataset, "Sport"))
+  plotdataset[4, ] <- list("Agricole", percentage_trauma(dataset, "Agricole"))
+  
+  plotdataset$Traumatisme <- factor(
+    plotdataset$Traumatisme,
+    levels=c(
+      "AVP",
+      "Chute",
+      "Sport",
+      "Agricole"
+    )
+  )
+
+  plot = plotdataset %>%
+    ggplot( aes(x = Traumatisme, y = Percentage)) +
+    # scale_y_continuous(position="None") +
+    geom_col(
+      alpha=0.6,
       fill=color_generic_stats(),
       width=0.7
     ) +
-    # scale_y_continuous(labels=scales::percent) +
+    geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black") +
     labs (
       title= "Répartition des patients en fonction du type de trauma",
       y="Nombre de cas",
@@ -37,9 +60,10 @@ generate_plot_patients_repartition_by_traumatisme <- function(dataset) {
     default_theming(
       y_title_angle = 90,
       title_size = 14,
-      legend_title_size = 12
+      legend_title_size = 12,
+      y_text_size = 0,
+      y_title_size = 0
     )
-  
   return(plot)
   
 }
