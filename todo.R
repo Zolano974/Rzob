@@ -19,7 +19,7 @@
 
 #SF36
 
-# -> moeyenne globale de chaque partie
+# [OK] -> moeyenne globale de chaque partie
 
 # -> moyenne globale de chaque partie par type de fracture
 
