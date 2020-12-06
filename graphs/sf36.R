@@ -26,38 +26,37 @@ setDT(sf36)
 # Moyennes des notes SF36 globale #
 # ------------------------------- #
 
-sf36_global_mean = calculate_sf36_means(sf36)
-sf36_global_mean
-
+calculate_sf36_means(sf36)
+generate_SF36_circularo_barplot(sf36)
 
 # ------------------------------------------- #
 # Moyenne des notes SF36 par type de fracture #
 # ------------------------------------------- #
 
 #paroi post
-sf36_mean_paroipost = calculate_sf36_means(sf36[typefracture == "paroi post"])
-sf36_mean_paroipost
+calculate_sf36_means(sf36[typefracture == "paroi post"])
+generate_SF36_circularo_barplot(sf36[typefracture == "paroi post"])
 
 #transversale
-sf36_mean_transversale = calculate_sf36_means(sf36[typefracture == "transversale"])
-sf36_mean_transversale
+calculate_sf36_means(sf36[typefracture == "transversale"])
+generate_SF36_circularo_barplot(sf36[typefracture == "transversale"])
 
 #transversale et paroipost
-sf36_mean_transversale_paroipost = calculate_sf36_means(sf36[typefracture == "transversale et paroi post"])
-sf36_mean_transversale_paroipost
+calculate_sf36_means(sf36[typefracture == "transversale et paroi post"])
+generate_SF36_circularo_barplot(sf36[typefracture == "transversale et paroi post"])
 
 #colonne antérieure
-sf36_mean_colonne_antérieure = calculate_sf36_means(sf36[typefracture == "colonne antérieure"])
-sf36_mean_colonne_antérieure
+calculate_sf36_means(sf36[typefracture == "colonne antérieure"])
+generate_SF36_circularo_barplot(sf36[typefracture == "colonne antérieure"])
 
 #bi colonne
-sf36_mean_bicolonne = calculate_sf36_means(sf36[typefracture == "bi colonne"])
-sf36_mean_bicolonne
+calculate_sf36_means(sf36[typefracture == "bi colonne"])
+generate_SF36_circularo_barplot(sf36[typefracture == "bi colonne"])
 
 #T
-sf36_mean_T = calculate_sf36_means(sf36[typefracture == "T"])
-sf36_mean_T
+calculate_sf36_means(sf36[typefracture == "T"])
+generate_SF36_circularo_barplot(sf36[typefracture == "T"])
 
 
 
-
+        

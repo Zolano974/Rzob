@@ -6,10 +6,13 @@ library(dplyr)
 library(gridExtra)
 library(cowplot)
 
-source("utils/fn_fractures.R")
-source("utils/fn_scores.R")
 source("utils/fn_cas.R")
+source("utils/fn_correlation_scores_autotest.R")
+source("utils/fn_count.R")
+source("utils/fn_fractures.R")
 source("utils/fn_matta.R")
+source("utils/fn_scores.R")
+source("utils/fn_sf36.R")
 
 setDT(ReccueilR)
 
@@ -24,27 +27,22 @@ setDT(ReccueilR)
       &!is.na(Fracture)
     ]
     
-    p1 = generate_plot_patients_repartition_by_traumatisme(generaldata)
-    p1
+    # -> réprtition des cas par type de trauma
+    generate_plot_patients_repartition_by_traumatisme(generaldata)
     
     # -> répartition des cas par type de fracture
-    
-    p2 = generate_plot_patients_repartition_by_fracture(generaldata)
-    p2
+    generate_plot_patients_repartition_by_fracture(generaldata)
     
     # -> repartition des cas par voie d'abord 
-    p3 = generate_plot_patients_repartition_by_voie_abord(generaldata)
-    p3
+    generate_plot_patients_repartition_by_voie_abord(generaldata)
     
     # -> répartition des cas par XP chirurgien
-    p4 = generate_plot_patients_repartition_by_xp_chir(generaldata)
-    p4
+    generate_plot_patients_repartition_by_xp_chir(generaldata)
     
     # -> répartition des cas par score MATTA
-    p5 = generate_plot_patients_repartition_by_matta(generaldata)
-    p5
-
-# II - Repartition Fractures
+    generate_plot_patients_repartition_by_matta(generaldata)
+    
+  # II - Repartition Fractures
     
     # ----------------------------------------- #
     # I -Fracture en fonction du type de trauma #
@@ -54,25 +52,21 @@ setDT(ReccueilR)
     fracturedata1 = ReccueilR[!is.na(Traumatisme)&!is.na(Fracture)]
     
     #generate plot
-    fractureEnFonctionDuTrauma = generate_plot_fracture_by_traumatisme(fracturedata1)
-    fractureEnFonctionDuTrauma
+    generate_plot_fracture_by_traumatisme(fracturedata1)
     
     # ----------------------------------------- #
     # I -Fracture en fonction de l'age          #
     # ----------------------------------------- #
     
     fracturedata2 = ReccueilR[!is.na(Age)&!is.na(Fracture)]
-    
-    fractureEnFonctionDeLage = generate_plot_fracture_by_age(fracturedata2)
-    fractureEnFonctionDeLage
+    generate_plot_fracture_by_age(fracturedata2)
     
     # ----------------------------------------- #
     # I -Fracture en fonction de l'xp chir      #
     # ----------------------------------------- #
     
     fracturedata3 = ReccueilR[!is.na(Chirurgien)&!is.na(Fracture)]
-    fracture_x_chir = generate_histogram_fracture_expchir(fracturedata3)
-    fracture_x_chir
+    generate_histogram_fracture_expchir(fracturedata3)
     
 # III - Matta
     
@@ -85,22 +79,18 @@ setDT(ReccueilR)
     chirSenior = ReccueilR[Chirurgien == "Senior"]
     chirExpermente = ReccueilR[Chirurgien == "Expérimenté"]
     
-    
-    
     # --------------------------------------------------  #
     # I - Score de Matta en fonction de l'exp chirurgien  #
     # --------------------------------------------------  #
+    generate_histogram_mata_expchir(mattadata)
     
-    matta_x_chir = generate_histogram_mata_expchir(mattadata)
-    matta_x_chir
     # p0
     
     # --------------------------------------------------  #
     # II - Score de Matta en fonction du type de fracture #
     # --------------------------------------------------  #
-    
-    matta_x_fracture_global = generate_histogram_mata_fracture(mattadata)
-    matta_x_fracture_global
+    generate_histogram_mata_fracture(mattadata)
+
 
 # IV - Scores    
 
@@ -145,12 +135,46 @@ setDT(ReccueilR)
     plot_grid(harris_bp, pma_bp, labels=c(NA, NA),ncol = 2, nrow = 1)
     
     
-# V - SF36 (TODO)
+# V - SF36
+    
+    # ------------------------------- #
+    # Moyennes des notes SF36 globale #
+    # ------------------------------- #
+    
+    calculate_sf36_means(sf36)
+    generate_SF36_circularo_barplot(sf36)
+    
+    # ------------------------------------------- #
+    # Moyenne des notes SF36 par type de fracture #
+    # ------------------------------------------- #
+    
+    #paroi post
+    calculate_sf36_means(sf36[typefracture == "paroi post"])
+    generate_SF36_circularo_barplot(sf36[typefracture == "paroi post"])
+    
+    #transversale
+    calculate_sf36_means(sf36[typefracture == "transversale"])
+    generate_SF36_circularo_barplot(sf36[typefracture == "transversale"])
+    
+    #transversale et paroipost
+    calculate_sf36_means(sf36[typefracture == "transversale et paroi post"])
+    generate_SF36_circularo_barplot(sf36[typefracture == "transversale et paroi post"])
+    
+    #colonne antérieure
+    calculate_sf36_means(sf36[typefracture == "colonne antérieure"])
+    generate_SF36_circularo_barplot(sf36[typefracture == "colonne antérieure"])
+    
+    #bi colonne
+    calculate_sf36_means(sf36[typefracture == "bi colonne"])
+    generate_SF36_circularo_barplot(sf36[typefracture == "bi colonne"])
+    
+    #T
+    calculate_sf36_means(sf36[typefracture == "T"])
+    generate_SF36_circularo_barplot(sf36[typefracture == "T"])
     
 # VI -Radios (TODO, TOBEDEFINED)
     
 # VII - Autotest
-    
     
     autotestdata = ReccueilR[
       !is.na(Oxford)

@@ -63,7 +63,7 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
       x="Type de traumatisme",
       fill="Fracture"
     ) +
-    scale_fill_brewer(palette="RdBu") +
+    scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       y_title_angle = 90,
       title_size = 16,
@@ -109,7 +109,7 @@ generate_plot_fracture_by_age <- function(dataset){
       y="",
       fill="Fracture"
     ) +
-    scale_fill_brewer(palette="RdBu") +
+    scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       y_title_angle = 90,
       title_size = 16,
@@ -160,7 +160,7 @@ generate_histogram_fracture_expchir <- function(dataset){
       x="Expérience du chirurgien",
       y=""
     ) +
-    scale_fill_brewer(palette="RdBu") +
+    scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       x_text_angle=45,
       x_text_vjust = 0.5,
