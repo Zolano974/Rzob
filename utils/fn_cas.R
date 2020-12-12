@@ -191,7 +191,7 @@ generate_plot_patients_repartition_by_voie_abord <- function(dataset) {
     stringsAsFactors=FALSE
   )
   
-  plotdataset[1, ] <- list("Ilio-induinal", percentage_abord(dataset, "Ilio"))
+  plotdataset[1, ] <- list("Ilio-inguinal", percentage_abord(dataset, "Ilio"))
   plotdataset[2, ] <- list("Kocher-Langenbeck", percentage_abord(dataset, "Kocher"))
   plotdataset[3, ] <- list("Double Abord", percentage_abord(dataset, "Double"))
   
@@ -199,7 +199,7 @@ generate_plot_patients_repartition_by_voie_abord <- function(dataset) {
   plotdataset$Abord <- factor(
     plotdataset$Abord, 
     levels=c(
-      "Ilio-induinal",
+      "Ilio-inguinal",
       "Kocher-Langenbeck", 
       "Double Abord"
     )

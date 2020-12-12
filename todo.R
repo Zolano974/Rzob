@@ -3,6 +3,9 @@
 #répartition globale 
 
 #repartition globale [DONE]
+  
+ # -> Vérifier les caluls d'écart type sur "sd_by_score" : ce ne sont pas les memes que ceux calculés par Sophie sur Excel
+
 
  # [OK] -> virer l'échelle a gauche
  # [OK] -> afficher en % le comptage et l'échelle (ajout de colonne dynamique)
