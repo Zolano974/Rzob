@@ -58,7 +58,7 @@ generate_histogram_mata_expchir <- function(dataset){
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (
-      title= "Score de Matta en fonction de l'expérience du chirurgien",
+      title= "",
       x="Expérience du chirurgien",
       fill="Matta",
       y=""
@@ -112,7 +112,7 @@ generate_histogram_mata_fracture <- function(dataset){
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (
-      title= "Répartition du score de Matta en fonction du type de fracture",
+      title= "",
       x="Type de Fracture",
       fill="Matta",
       y=""

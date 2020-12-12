@@ -58,7 +58,7 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (
-      title= "Répartition des fractures en fonction du type de trauma",
+      title= "",
       y="",
       x="Type de traumatisme",
       fill="Fracture"
@@ -104,7 +104,7 @@ generate_plot_fracture_by_age <- function(dataset){
     scale_x_continuous(breaks=c(20,30,40,50,60,70),labels=c("10-20","20-30","30-40","40-50","50-60","60-70")) +
     scale_y_continuous(labels=scales::percent) +
     labs (
-      title= "Répartition des fractures en fonction de l'âge",
+      title= "",
       x="Classe d'âge",
       y="",
       fill="Fracture"
@@ -155,7 +155,7 @@ generate_histogram_fracture_expchir <- function(dataset){
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (
-      title= "Type de Fracture en fonction de l'expérience du chirurgien",
+      title= "",
       fill= "Fracture",
       x="Expérience du chirurgien",
       y=""
@@ -253,7 +253,7 @@ my_sandbox <- function(){
       width=0.4
     ) +
     labs (
-      title= "Type de Fracture en fonction de l'expérience du chirurgien",
+      title= "",
       fill= "Fracture",
       x="Expérience du chirurgien",
       y=""

@@ -9,6 +9,10 @@ percentage_trauma <- function(dataset, trauma){
   t_trauma <- quote(trauma)
   occurrences = nrow(dataset[Traumatisme == eval(t_trauma)])
   
+  print(paste("trauma :", t_trauma))
+  print(paste("occurrences :", occurrences))
+  print(paste("total :", total))
+  
   if(occurrences == 0){
     return(0)
   }
@@ -81,8 +85,10 @@ generate_plot_patients_repartition_by_traumatisme <- function(dataset) {
     stringsAsFactors=FALSE
   )
   
+  # View(dataset)
+  
   plotdataset[1, ] <- list("AVP", percentage_trauma(dataset, "AVP"))
-  plotdataset[2, ] <- list("Chute", percentage_trauma(dataset, "Chute"))
+  plotdataset[2, ] <- list("Chute", (percentage_trauma(dataset, "Chute") - 0.1)) #round for total=100
   plotdataset[3, ] <- list("Sport", percentage_trauma(dataset, "Sport"))
   plotdataset[4, ] <- list("Agricole", percentage_trauma(dataset, "Agricole"))
   
@@ -106,7 +112,7 @@ generate_plot_patients_repartition_by_traumatisme <- function(dataset) {
     ) +
     geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
-      title= "Répartition des patients en fonction du type de trauma",
+      title= "",
       y="Nombre de cas",
       x="Type de traumatisme"
     ) +
@@ -131,7 +137,7 @@ generate_plot_patients_repartition_by_fracture <- function(dataset){
     stringsAsFactors=FALSE
   )
   
-  plotdataset[1, ] <- list("PP", percentage_fracture(dataset, "paroi postérieure"))
+  plotdataset[1, ] <- list("PP", (percentage_fracture(dataset, "paroi postérieure")-0.1)) #round for total = 100
   plotdataset[2, ] <- list("TR-PP", percentage_fracture(dataset, "transversale et paroi postérieure"))
   plotdataset[3, ] <- list("TR", percentage_fracture(dataset, "transversale"))
   plotdataset[4, ] <- list("BC", percentage_fracture(dataset, "bi colonne"))
@@ -159,7 +165,7 @@ generate_plot_patients_repartition_by_fracture <- function(dataset){
     ) +
     geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black",size=6) +
     labs (
-      title= "Répartition des patients en fonction du type de fracture",
+      title= "",
       y="Nombre de cas",
       x="Type de fracture"
     ) +
@@ -185,17 +191,17 @@ generate_plot_patients_repartition_by_voie_abord <- function(dataset) {
     stringsAsFactors=FALSE
   )
   
-  plotdataset[1, ] <- list("Ilio", percentage_abord(dataset, "Ilio"))
-  plotdataset[2, ] <- list("Kocher", percentage_abord(dataset, "Kocher"))
-  plotdataset[3, ] <- list("Double", percentage_abord(dataset, "Double"))
+  plotdataset[1, ] <- list("Ilio-induinal", percentage_abord(dataset, "Ilio"))
+  plotdataset[2, ] <- list("Kocher-Langenbeck", percentage_abord(dataset, "Kocher"))
+  plotdataset[3, ] <- list("Double Abord", percentage_abord(dataset, "Double"))
   
   #defining order for "Chirurgien"  (/!\ if orientation=x order needs to be reversed)
   plotdataset$Abord <- factor(
     plotdataset$Abord, 
     levels=c(
-      "Ilio",
-      "Kocher", 
-      "Double"
+      "Ilio-induinal",
+      "Kocher-Langenbeck", 
+      "Double Abord"
     )
   )
   
@@ -208,7 +214,7 @@ generate_plot_patients_repartition_by_voie_abord <- function(dataset) {
     ) +
     geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
-      title= "Répartition des patients en fonction de la voie d'abord",
+      title= "",
       y="Nombre de cas",
       x="Voie d'Abord"
     ) +
@@ -255,7 +261,7 @@ generate_plot_patients_repartition_by_xp_chir <- function(dataset) {
     ) +
     geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
-      title= "Répartition des patients en fonction de l'expérience du chirurgien",
+      title= "",
       y="Nombre de cas",
       x="Expérience du Chirurgien"
     ) +
@@ -303,7 +309,7 @@ generate_plot_patients_repartition_by_matta <- function(dataset) {
     ) +
     geom_text(aes(label = paste(Percentage, "%")), vjust = -0.3, colour = "black", size=6) +
     labs (
-      title= "Répartition des patients en fonction du critère de Matta",
+      title= "",
       y="Nombre de cas",
       x="Matta"
     ) +

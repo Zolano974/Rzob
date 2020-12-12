@@ -18,13 +18,7 @@ source("utils/fn_cas.R")
 setDT(ReccueilR)
 
 
-fulldata = ReccueilR[
-  !is.na(Oxford)
-  &!is.na(PMA)
-  &!is.na(HarrisHS)
-  &!is.na(Womac)
-  &!is.na(Fracture)
-]
+fulldata = ReccueilR
 
 
 # -> répartition des cas par type de trauma

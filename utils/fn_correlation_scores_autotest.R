@@ -130,7 +130,7 @@ generator_lineareg_plot_grid_autotest_vs_others <- function(dataset){
   
   title <- ggdraw() +
     draw_label(
-      "Corrélation des résultats de l'Autotest aux autres scores",
+      "",
       x = 0,
       hjust = 0,
       vjust=0.5
@@ -229,7 +229,7 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
   
   #plotting dataframe as histogram
   plot = testcors %>%
-    ggplot(aes(x=TestName, y=Rho, label=paste("ρ=",round(Rho, 3)))) +
+    ggplot(aes(x=TestName, y=Rho, label=round(Rho, 3))) +
     geom_bar(
       aes(fill = TestName),
       stat='identity',
@@ -240,7 +240,7 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
     ) +
     geom_text(size = 4, position = position_stack(vjust = 0.9), color="white") +
     labs (
-      title= "Corrélation de l'auto-test aux autres scores",
+      title= "",
       x="Score",
       y="Corrélation de Spearman"
     ) +

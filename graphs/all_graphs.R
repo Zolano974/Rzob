@@ -5,6 +5,7 @@ library(ggplot2)
 library(dplyr)
 library(gridExtra)
 library(cowplot)
+library(hash)
 
 source("utils/fn_cas.R")
 source("utils/fn_correlation_scores_autotest.R")
@@ -16,16 +17,11 @@ source("utils/fn_sf36.R")
 
 setDT(ReccueilR)
 
+
 # I - Global repartition des cas
 
     # -> répartition des cas par type de trauma
-    generaldata = ReccueilR[
-      !is.na(Oxford)
-      &!is.na(PMA)
-      &!is.na(HarrisHS)
-      &!is.na(Womac)
-      &!is.na(Fracture)
-    ]
+    generaldata = ReccueilR
     
     # -> réprtition des cas par type de trauma
     generate_plot_patients_repartition_by_traumatisme(generaldata)
@@ -117,8 +113,8 @@ setDT(ReccueilR)
     
     #Approche II -> un seul tableau
     
-    # mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
-    # mean_by_score
+    mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
+    mean_by_score
     
     sd_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, sd)
     sd_by_score
@@ -136,7 +132,8 @@ setDT(ReccueilR)
     
     
 # V - SF36
-    
+  setDT(sf36)
+  
     # ------------------------------- #
     # Moyennes des notes SF36 globale #
     # ------------------------------- #
