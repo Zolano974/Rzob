@@ -29,7 +29,7 @@ setDT(ReccueilR)
     # -> répartition des cas par type de fracture
     generate_plot_patients_repartition_by_fracture(generaldata)
     
-    # -> repartition des cas par voie d'abord 
+    # -> repartition des cas par voie d'abord       
     generate_plot_patients_repartition_by_voie_abord(generaldata)
     
     # -> répartition des cas par XP chirurgien

@@ -27,7 +27,9 @@ generate_scattering_autotest_oxford <- function(dataset){
       y="",
       x="Oxford"
     ) +
-    default_theming()
+    default_theming(
+      grid = TRUE
+    )
   
   return(plot)
 }
@@ -256,7 +258,7 @@ generate_histogram_autotest_corr_with_other_scores <- function(dataset){
       y_title_angle=90,
       legend_position = "none"
     )
-  
+
     return(plot)
 }
 

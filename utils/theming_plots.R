@@ -16,14 +16,14 @@ default_theming <- function(
     y_text_vjust=0,
     y_title_angle=0, 
     y_title_size=15,
-    y_title_vjust=0
+    y_title_vjust=0,
+    grid=FALSE
   ){
   theme = theme(
   
     #background
     panel.background= generate_background_panel(),
     panel.border= generate_panel_border(),
-    panel.grid = element_line(),
     
     title =  element_text(
       size=title_size,
@@ -67,7 +67,25 @@ default_theming <- function(
       colour = color_dark_grey(),
       vjust=y_text_vjust
     ),
+    
+    panel.grid.major = element_line(
+      size = 0.2, 
+      linetype = 'solid',
+      colour = "#999999"
+    ),
+    
+    panel.grid.minor = element_line(
+      size = 0.1, 
+      linetype = 'solid',
+      colour = "#999999"
+    ) ,
   )
+  
+  if(grid == TRUE){
+  
+
+  }
+  
   return(theme)
 }
 
