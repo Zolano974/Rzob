@@ -20,6 +20,10 @@ palette_fractures <- function(){
   return("RdBu")
 }
 
+palette_radios <- function(){
+  return("Spectral")
+}
+
 color_boxplot_scores <- function(scorename){
   if(scorename == "Oxford"){
      return("#008f24")

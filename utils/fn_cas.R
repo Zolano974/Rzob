@@ -4,6 +4,8 @@ source("utils/theming_colors.R")
 #calculate the % of the given trauma over the given dataset
 percentage_trauma <- function(dataset, trauma){
   
+  # View(dataset)
+  
   total = nrow(dataset)
   
   t_trauma <- quote(trauma)

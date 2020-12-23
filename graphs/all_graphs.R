@@ -6,6 +6,7 @@ library(dplyr)
 library(gridExtra)
 library(cowplot)
 library(hash)
+library(readxl)
 
 source("utils/fn_cas.R")
 source("utils/fn_correlation_scores_autotest.R")
@@ -14,6 +15,9 @@ source("utils/fn_fractures.R")
 source("utils/fn_matta.R")
 source("utils/fn_scores.R")
 source("utils/fn_sf36.R")
+
+ReccueilR <- read_excel("ReccueilR.xls")
+
 
 setDT(ReccueilR)
 
