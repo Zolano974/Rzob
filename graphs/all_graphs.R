@@ -187,24 +187,23 @@ setDT(ReccueilR)
 # ============================== #       
     
     
-    dataset = ReccueilR[
+    radios_data = ReccueilR[
       !is.na(Matta)
       &!is.na(Arthrose)
       &!is.na(Ossifications)
-      &!is.na(OATF)
     ]
     
     #Arthrose
     
-    generate_plot_arthrose_by_matta(dataset)
+    generate_plot_arthrose_by_matta(radios_data)
     
-    generate_plot_arthrose_by_fracture(dataset)
+    generate_plot_arthrose_by_fracture(radios_data)
     
     #Ossification
     
-    generate_plot_ossification_by_matta(dataset)
+    generate_plot_ossification_by_matta(radios_data)
     
-    generate_plot_ossification_by_fracture(dataset)
+    generate_plot_ossification_by_fracture(radios_data)
     
 # ============== #   
 # VII - Autotest

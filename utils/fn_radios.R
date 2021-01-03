@@ -52,9 +52,9 @@ generate_plot_arthrose_by_matta <- function(dataset){
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
-      vjust = 5
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
+      vjust = 1.5
     ) +
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
@@ -116,9 +116,9 @@ generate_plot_arthrose_by_fracture <- function(dataset){
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
-      vjust = 5
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
+      vjust = 2
     ) +    
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
@@ -185,8 +185,8 @@ generate_plot_ossification_by_matta <- function(dataset){
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
       vjust = 2
     ) +      
     scale_fill_brewer(palette=palette_radios()) +
@@ -250,8 +250,8 @@ generate_plot_ossification_by_fracture <- function(dataset){
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
       vjust = 2
     ) +        
     scale_fill_brewer(palette=palette_radios()) +

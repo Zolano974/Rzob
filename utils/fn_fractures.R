@@ -69,8 +69,8 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
       vjust = 2
     ) +      
     scale_fill_brewer(palette=palette_fractures()) +
@@ -181,8 +181,8 @@ generate_histogram_fracture_expchir <- function(dataset){
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
       vjust = 2
     ) +        
     scale_fill_brewer(palette=palette_fractures()) +

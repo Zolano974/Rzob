@@ -72,8 +72,8 @@ generate_histogram_mata_expchir <- function(dataset){
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
       vjust = 2
     ) +      
     scale_fill_brewer(palette=palette_matta()) +
@@ -133,8 +133,8 @@ generate_histogram_mata_fracture <- function(dataset){
     stat_count(
       geom = "text",
       position="fill",
-      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
-      # aes(label = ..count..),
+      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      aes(label = ..count..),
       vjust = 4
     ) +       
     scale_fill_brewer(palette=palette_matta()) +
