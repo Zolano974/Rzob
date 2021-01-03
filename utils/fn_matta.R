@@ -48,9 +48,14 @@ generate_histogram_mata_expchir <- function(dataset){
   # label=round(Rho, 3)
   
   plot = dataset %>%
-    ggplot(aes(x=Chirurgien, fill=MattaFull)) +
+    ggplot(
+      aes(
+        x=Chirurgien, 
+        y = (..count..)/sum(..count..),
+        fill=MattaFull
+      )
+    ) +
     geom_bar(
-      stat='count',
       position="fill",
       orientation="x",
       colour="white",
@@ -63,6 +68,13 @@ generate_histogram_mata_expchir <- function(dataset){
       fill="Matta",
       y=""
     ) +
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 2
+    ) +      
     scale_fill_brewer(palette=palette_matta()) +
     default_theming(
       y_title_vjust = 0.5,
@@ -102,9 +114,8 @@ generate_histogram_mata_fracture <- function(dataset){
       FractureX, 
       #here we define the order of the stacked values
       levels=factor_fracture_x_levels(),
-    ), fill=MattaFull)) +
+    ), fill=MattaFull, y=(..count..)/sum(..count..))) +
     geom_bar(
-      stat='count',
       position="fill",
       orientation="x",
       colour="white",
@@ -117,6 +128,13 @@ generate_histogram_mata_fracture <- function(dataset){
       fill="Matta",
       y=""
     ) + 
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 4
+    ) +       
     scale_fill_brewer(palette=palette_matta()) +
     # scale_fill_manual(values = c("#04c70a", "#fcff3d", "#FF0000")) #custom values
     default_theming(

@@ -113,7 +113,7 @@ setDT(ReccueilR)
     
     #keep only 4 scores + fracture type
     scoresdata = filter_dataset_score_fracture(scoredata)
-    View(scoresdata)
+    # View(scoresdata)
     
     #STATS GLOBALE
     global_stats_table = calculate_global_stat_by_score(scoresdata)

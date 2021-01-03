@@ -34,7 +34,11 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
 
   plot = dataset %>%
     # ggplot(      aes(y=Traumatisme, fill=Fracture, order=Fracture)) +
-    ggplot(      aes(x=Traumatisme, fill=factor(
+    ggplot(
+      aes(
+        x=Traumatisme,
+        y = (..count..)/sum(..count..),
+        fill=factor(
           Fracture, 
           #here we define the order of the stacked values
           levels=c(
@@ -50,7 +54,6 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
     ) +
     geom_bar(
       position="fill",
-      stat='count', 
       orientation="x", 
       alpha=0.9,
       colour="white",
@@ -63,6 +66,13 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
       x="Type de traumatisme",
       fill="Fracture"
     ) +
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 2
+    ) +      
     scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       y_title_angle = 90,
@@ -81,7 +91,10 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
 generate_plot_fracture_by_age <- function(dataset){
   
   plot = dataset %>%
-    ggplot(aes(x=Age, fill=factor(
+    ggplot(
+      aes(
+        x=Age, 
+        fill=factor(
           Fracture, 
           #here we define the order of the stacked values
           levels=c(
@@ -133,21 +146,24 @@ generate_histogram_fracture_expchir <- function(dataset){
   
 
   plot = dataset %>%
-    ggplot(aes(x=Chirurgien, fill=factor(
-      Fracture, 
-      #here we define the order of the stacked values
-      levels=c(
-        "T",
-        "colonne antérieure",
-        "transversale",
-        "paroi postérieure", 
-        "transversale et paroi postérieure",
-        "bi colonne"
-      )
-    )
+    ggplot(
+      aes(
+        x=Chirurgien, 
+        y = (..count..)/sum(..count..),
+        fill=factor(
+          Fracture, 
+          #here we define the order of the stacked values
+          levels=c(
+            "T",
+            "colonne antérieure",
+            "transversale",
+            "paroi postérieure", 
+            "transversale et paroi postérieure",
+            "bi colonne"
+          )
+        )
     )) +
     geom_bar(
-      stat='count',
       position="fill",
       orientation="x",
       colour="white",
@@ -160,6 +176,13 @@ generate_histogram_fracture_expchir <- function(dataset){
       x="Expérience du chirurgien",
       y=""
     ) +
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 2
+    ) +        
     scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       x_text_angle=45,
