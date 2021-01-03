@@ -30,13 +30,14 @@ generate_plot_arthrose_by_matta <- function(dataset){
     )
   )
   
-  plot = dataset %>%
-    # ggplot(aes(x=factor(Arthrose), fill=MattaFull)) +
-    ggplot(aes(x=factor(MattaFull), fill=factor(Arthrose))) +
+  plot = ggplot(dataset, aes(
+        x = factor(MattaFull), 
+        fill = factor(Arthrose), 
+        y = (..count..)/sum(..count..)
+      )
+    ) +
     geom_bar(
-      stat='count',
       position="fill",
-      orientation="x",
       colour="white",
       alpha=0.8,
       width=0.8
@@ -48,6 +49,13 @@ generate_plot_arthrose_by_matta <- function(dataset){
       fill="Arthrose",
       y=""
     ) + 
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 5
+    ) +
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
       x_text_size = 12,
@@ -88,13 +96,12 @@ generate_plot_arthrose_by_fracture <- function(dataset){
                 FractureX, 
                 levels=factor_fracture_x_levels(),
               ), 
-              fill=Arthrose
+              fill=Arthrose,
+              y = (..count..)/sum(..count..)
           )
     ) +
     geom_bar(
-      stat='count',
       position="fill",
-      orientation="x",
       colour="white",
       alpha=0.8,
       width=0.8
@@ -106,6 +113,13 @@ generate_plot_arthrose_by_fracture <- function(dataset){
       fill="Arthrose",
       y=""
     ) + 
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 5
+    ) +    
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
       x_text_size = 12,
@@ -149,9 +163,12 @@ generate_plot_ossification_by_matta <- function(dataset){
   )
   
   plot = dataset %>%
-    ggplot(aes(x=factor(MattaFull), fill=Ossifications)) +
+    ggplot(aes(
+      x=factor(MattaFull), 
+      fill=Ossifications),
+      y = (..count..)/sum(..count..)
+    ) +
     geom_bar(
-      stat='count',
       position="fill",
       orientation="x",
       colour="white",
@@ -165,6 +182,13 @@ generate_plot_ossification_by_matta <- function(dataset){
       fill="Ossification",
       y=""
     ) + 
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 2
+    ) +      
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
       x_text_size = 12,
@@ -202,14 +226,14 @@ generate_plot_ossification_by_fracture <- function(dataset){
   
   plot = dataset %>%
     ggplot(aes(x=factor(
-      FractureX, 
-      levels=factor_fracture_x_levels(),
-    ), 
-    fill=Ossifications
-    )
+                  FractureX, 
+                  levels=factor_fracture_x_levels(),
+                ), 
+                fill=Ossifications,
+                y = (..count..)/sum(..count..)
+              )
     ) +
     geom_bar(
-      stat='count',
       position="fill",
       orientation="x",
       colour="white",
@@ -223,6 +247,13 @@ generate_plot_ossification_by_fracture <- function(dataset){
       fill="Ossification",
       y=""
     ) + 
+    stat_count(
+      geom = "text",
+      position="fill",
+      aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      # aes(label = ..count..),
+      vjust = 2
+    ) +        
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
       x_text_size = 12,
