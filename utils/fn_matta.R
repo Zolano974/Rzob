@@ -59,7 +59,8 @@ generate_histogram_mata_expchir <- function(dataset){
       position="fill",
       orientation="x",
       colour="white",
-      width=0.8
+      width=0.8,
+      alpha=0.8
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (
@@ -119,7 +120,8 @@ generate_histogram_mata_fracture <- function(dataset){
       position="fill",
       orientation="x",
       colour="white",
-      width=0.8
+      width=0.8,
+      alpha=0.8
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (

@@ -55,7 +55,7 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
     geom_bar(
       position="fill",
       orientation="x", 
-      alpha=0.9,
+      alpha=0.8,
       colour="white",
       width=0.7
     ) +
@@ -112,7 +112,8 @@ generate_plot_fracture_by_age <- function(dataset){
       position="fill",
       binwidth=10,
       orientation="x",
-      colour="white"
+      colour="white",
+      alpha=0.8
     ) +
     scale_x_continuous(breaks=c(20,30,40,50,60,70),labels=c("10-20","20-30","30-40","40-50","50-60","60-70")) +
     scale_y_continuous(labels=scales::percent) +
@@ -167,7 +168,8 @@ generate_histogram_fracture_expchir <- function(dataset){
       position="fill",
       orientation="x",
       colour="white",
-      width=0.7
+      width=0.7,
+      alpha=0.8
     ) +
     scale_y_continuous(labels=scales::percent) +
     labs (
