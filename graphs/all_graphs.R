@@ -21,8 +21,9 @@ ReccueilR <- read_excel("ReccueilR.xls")
 
 setDT(ReccueilR)
 
-
-# I - Global repartition des cas
+# ============================== #
+# I - Global repartition des cas #
+# ============================== #
 
     # -> répartition des cas par type de trauma
     generaldata = ReccueilR
@@ -41,9 +42,11 @@ setDT(ReccueilR)
     
     # -> répartition des cas par score MATTA
     generate_plot_patients_repartition_by_matta(generaldata)
-    
+  
+  # ========================== #
   # II - Repartition Fractures
-    
+  # ========================== #
+
     # ----------------------------------------- #
     # I -Fracture en fonction du type de trauma #
     # ----------------------------------------- #
@@ -68,7 +71,9 @@ setDT(ReccueilR)
     fracturedata3 = ReccueilR[!is.na(Chirurgien)&!is.na(Fracture)]
     generate_histogram_fracture_expchir(fracturedata3)
     
-# III - Matta
+# =========== #    
+# III - Matta #
+# =========== #    
     
     mattadata = ReccueilR[
       !is.na(Matta)
@@ -91,9 +96,10 @@ setDT(ReccueilR)
     # --------------------------------------------------  #
     generate_histogram_mata_fracture(mattadata)
 
-
-# IV - Scores    
-
+# ============= #
+# IV - Scores   #
+# ============= #
+    
     #filter the initial data
     scoredata = ReccueilR[
       !is.na(Oxford)
@@ -134,8 +140,10 @@ setDT(ReccueilR)
     plot_grid(oxford_bp, womac_bp, labels=c(NA, NA),ncol = 2, nrow = 1)
     plot_grid(harris_bp, pma_bp, labels=c(NA, NA),ncol = 2, nrow = 1)
     
-    
-# V - SF36
+# ======== #    
+# V - SF36 #
+# ======== #
+
   setDT(sf36)
   
     # ------------------------------- #
@@ -173,9 +181,33 @@ setDT(ReccueilR)
     calculate_sf36_means(sf36[typefracture == "T"])
     generate_SF36_circularo_barplot(sf36[typefracture == "T"])
     
+# ============================== #       
 # VI -Radios (TODO, TOBEDEFINED)
+# ============================== #       
     
+    
+    dataset = ReccueilR[
+      !is.na(Matta)
+      &!is.na(Arthrose)
+      &!is.na(Ossifications)
+      &!is.na(OATF)
+    ]
+    
+    #Arthrose
+    
+    generate_plot_arthrose_by_matta(dataset)
+    
+    generate_plot_arthrose_by_fracture(dataset)
+    
+    #Ossification
+    
+    generate_plot_ossification_by_matta(dataset)
+    
+    generate_plot_ossification_by_fracture(dataset)
+    
+# ============== #   
 # VII - Autotest
+# ============== #   
     
     autotestdata = ReccueilR[
       !is.na(Oxford)
