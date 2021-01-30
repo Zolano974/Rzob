@@ -37,12 +37,12 @@ generate_plot_arthrose_by_matta <- function(dataset){
       )
     ) +
     geom_bar(
-      position="fill",
+      position="stack",
       colour="white",
       alpha=0.8,
       width=0.8
     ) +
-    scale_y_continuous(labels=scales::percent) +
+    # scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       x="Matta",
@@ -51,16 +51,17 @@ generate_plot_arthrose_by_matta <- function(dataset){
     ) + 
     stat_count(
       geom = "text",
-      position="fill",
+      position="stack",
       # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
       aes(label = ..count..),
+      size=2.5,
       vjust = 1.5
     ) +
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
       x_text_size = 12,
       x_text_vjust = 0.5,
-      y_text_size=10,
+      y_text_size=0,
       y_title_vjust = 0.5,
       title_size = 16
     )
@@ -101,12 +102,12 @@ generate_plot_arthrose_by_fracture <- function(dataset){
           )
     ) +
     geom_bar(
-      position="fill",
+      position="stack",
       colour="white",
       alpha=0.8,
       width=0.8
     ) +
-    scale_y_continuous(labels=scales::percent) +
+    # scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       x="Fracture",
@@ -115,9 +116,10 @@ generate_plot_arthrose_by_fracture <- function(dataset){
     ) + 
     stat_count(
       geom = "text",
-      position="fill",
+      position="stack",
       # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
       aes(label = ..count..),
+      size=2.5,
       vjust = 2
     ) +    
     scale_fill_brewer(palette=palette_radios()) +
@@ -125,7 +127,7 @@ generate_plot_arthrose_by_fracture <- function(dataset){
       x_text_size = 12,
       x_text_angle=50,
       x_text_vjust = 0.5,
-      y_text_size=10,
+      y_text_size=0,
       y_title_vjust = 0.5,
       title_size = 16
     )
@@ -169,13 +171,13 @@ generate_plot_ossification_by_matta <- function(dataset){
       y = (..count..)/sum(..count..)
     ) +
     geom_bar(
-      position="fill",
+      position="stack",
       orientation="x",
       colour="white",
       alpha=0.8,
       width=0.8
     ) +
-    scale_y_continuous(labels=scales::percent) +
+    # scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       x="Matta",
@@ -184,16 +186,17 @@ generate_plot_ossification_by_matta <- function(dataset){
     ) + 
     stat_count(
       geom = "text",
-      position="fill",
+      position="stack",
       # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
       aes(label = ..count..),
+      size=2.5,
       vjust = 2
     ) +      
     scale_fill_brewer(palette=palette_radios()) +
     default_theming(
       x_text_size = 12,
       x_text_vjust = 0.5,
-      y_text_size=10,
+      y_text_size=0,
       y_title_vjust = 0.5,
       title_size = 16
     )
@@ -234,13 +237,13 @@ generate_plot_ossification_by_fracture <- function(dataset){
               )
     ) +
     geom_bar(
-      position="fill",
+      position="stack",
       orientation="x",
       colour="white",
       alpha=0.8,
       width=0.8
     ) +
-    scale_y_continuous(labels=scales::percent) +
+    # scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       x="Fracture",
@@ -249,9 +252,10 @@ generate_plot_ossification_by_fracture <- function(dataset){
     ) + 
     stat_count(
       geom = "text",
-      position="fill",
+      position="stack",
       # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
       aes(label = ..count..),
+      size=2.5,
       vjust = 2
     ) +        
     scale_fill_brewer(palette=palette_radios()) +
@@ -259,7 +263,7 @@ generate_plot_ossification_by_fracture <- function(dataset){
       x_text_size = 12,
       x_text_angle=50,
       x_text_vjust = 0.5,
-      y_text_size=10,
+      y_text_size=0,
       y_title_vjust = 0.5,
       title_size = 16
     )

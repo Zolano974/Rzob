@@ -56,13 +56,13 @@ generate_histogram_mata_expchir <- function(dataset){
       )
     ) +
     geom_bar(
-      position="fill",
+      position="stack",
       orientation="x",
       colour="white",
       width=0.8,
       alpha=0.8
     ) +
-    scale_y_continuous(labels=scales::percent) +
+    # scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       x="Expérience du chirurgien",
@@ -71,14 +71,15 @@ generate_histogram_mata_expchir <- function(dataset){
     ) +
     stat_count(
       geom = "text",
-      position="fill",
-      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      position="stack",
       aes(label = ..count..),
+      size=2.5,
       vjust = 2
     ) +      
     scale_fill_brewer(palette=palette_matta()) +
     default_theming(
       y_title_vjust = 0.5,
+      y_text_size = 0,
       title_size = 16
     )
   return(plot)
@@ -117,13 +118,13 @@ generate_histogram_mata_fracture <- function(dataset){
       levels=factor_fracture_x_levels(),
     ), fill=MattaFull, y=(..count..)/sum(..count..))) +
     geom_bar(
-      position="fill",
+      position="stack",
       orientation="x",
       colour="white",
       width=0.8,
       alpha=0.8
     ) +
-    scale_y_continuous(labels=scales::percent) +
+    # scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       x="Type de Fracture",
@@ -132,9 +133,10 @@ generate_histogram_mata_fracture <- function(dataset){
     ) + 
     stat_count(
       geom = "text",
-      position="fill",
+      position="stack",
       # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
       aes(label = ..count..),
+      size = 2.5,
       vjust = 4
     ) +       
     scale_fill_brewer(palette=palette_matta()) +
@@ -143,7 +145,7 @@ generate_histogram_mata_fracture <- function(dataset){
         x_text_size = 12,
         x_text_angle=50,
         x_text_vjust = 0.5,
-        y_text_size=10,
+        y_text_size=0,
         y_title_vjust = 0.5,
         title_size = 16
     )

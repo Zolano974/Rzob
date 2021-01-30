@@ -53,13 +53,12 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
       )
     ) +
     geom_bar(
-      position="fill",
+      position="stack",
       orientation="x", 
       alpha=0.8,
       colour="white",
       width=0.7
     ) +
-    scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       y="",
@@ -68,14 +67,15 @@ generate_plot_fracture_by_traumatisme <- function(dataset) {
     ) +
     stat_count(
       geom = "text",
-      position="fill",
-      # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
+      position="stack",
       aes(label = ..count..),
-      vjust = 2
+      size=2.5,
+      vjust = 1.8
     ) +      
     scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       y_title_angle = 90,
+      y_text_size = 0,
       title_size = 16,
       legend_title_size = 14
     )
@@ -165,13 +165,13 @@ generate_histogram_fracture_expchir <- function(dataset){
         )
     )) +
     geom_bar(
-      position="fill",
+      position="stack",
       orientation="x",
       colour="white",
       width=0.7,
       alpha=0.8
     ) +
-    scale_y_continuous(labels=scales::percent) +
+    # scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       fill= "Fracture",
@@ -180,16 +180,17 @@ generate_histogram_fracture_expchir <- function(dataset){
     ) +
     stat_count(
       geom = "text",
-      position="fill",
+      position="stack",
       # aes(label = paste(round((..count..)/sum(..count..)*100), "%")),
       aes(label = ..count..),
+      size=2.5,
       vjust = 2
     ) +        
     scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       x_text_angle=45,
       x_text_vjust = 0.5,
-      y_text_size=10,
+      y_text_size=0,
       y_title_vjust = 0.5,
       title_size = 16
     )
