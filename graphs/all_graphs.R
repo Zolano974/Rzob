@@ -120,6 +120,7 @@ setDT(ReccueilR)
     #STATS GLOBALE
     global_stats_table = calculate_global_stat_by_score(scoresdata)
     global_stats_table
+    write.csv(global_stats_table, "/home/zolano/Documents/TheseSophie/R/zob.csv", row.names = TRUE)
     # View(global_stats_table)
     
     #SOUS GROUPES PAR TYPE DE FRACTURE
