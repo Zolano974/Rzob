@@ -19,6 +19,8 @@ source("utils/fn_radios.R")
 
 ReccueilR <- read_excel("../ReccueilR.xls")
 
+savePath = "/home/zolano/Documents/TheseSophie/R/results/clean5"
+
 
 setDT(ReccueilR)
 
@@ -204,6 +206,15 @@ setDT(ReccueilR)
     generate_plot_ossification_by_matta(radios_data)
     
     generate_plot_ossification_by_fracture(radios_data)
+    ggsave(
+      filename="21_RADIOS_OSSIFICATION_BY_FRACTURE.png", 
+      plot=last_plot(),
+      device = png(),
+      path =  savePath,
+      width = 25,
+      height = 15,
+      units = "cm"
+    )
     
 # ============== #   
 # VII - Autotest
