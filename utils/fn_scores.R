@@ -69,8 +69,6 @@ generate_score_boxplot <- function(dataset, column){
       fill = fill_boxplot_scores(column)
     ) +
     coord_flip() +
-    stat_summary(fun.y=mean, geom="point", shape=20, size=4) +
-    # scale_fill_brewer(palette="BuPu")
     default_theming(
       x_title_size = 0,
       x_text_size = 10,
@@ -80,12 +78,6 @@ generate_score_boxplot <- function(dataset, column){
       y_title_size=13,
       y_text_vjust = 0.5
     ) 
-    # labs (
-    #   x="Fracture",
-    # ) 
-    # theme(
-      # axis.text.x = element_text(angle=45, vjust=0.5)
-    # )
   return(plot)
 }
 
