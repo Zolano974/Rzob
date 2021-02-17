@@ -109,20 +109,26 @@ generate_plot_fracture_by_age <- function(dataset){
       )
     ) +
     geom_histogram(
-      position="fill",
+      position="stack",
       binwidth=10,
       orientation="x",
       colour="white",
       alpha=0.8
     ) +
     scale_x_continuous(breaks=c(20,30,40,50,60,70),labels=c("10-20","20-30","30-40","40-50","50-60","60-70")) +
-    scale_y_continuous(labels=scales::percent) +
     labs (
       title= "",
       x="Classe d'âge",
       y="",
       fill="Fracture"
     ) +
+    # stat_count(
+    #   geom = "text",
+    #   position="stack",
+    #   aes(label = ..count..),
+    #   size=3,
+    #   vjust = 1
+    # ) +    
     scale_fill_brewer(palette=palette_fractures()) +
     default_theming(
       y_title_angle = 90,

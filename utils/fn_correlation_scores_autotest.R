@@ -200,10 +200,10 @@ generate_4_regression_lines_same_graph <- function(dataset){
 generate_histogram_autotest_corr_with_other_scores <- function(dataset){
   
   #calculate correlations
-  corOxford = spearman_autotest_oxford(mydata) # -> 0.8547031
-  corWomac = spearman_autotest_womac(mydata) # -> 0.931137
-  corHarris = spearman_autotest_harris(mydata) # -> -0.866056
-  corPMA = spearman_autotest_pma(mydata) # -> 0.8928448
+  corOxford = spearman_autotest_oxford(dataset) # -> 0.8547031
+  corWomac = spearman_autotest_womac(dataset) # -> 0.931137
+  corHarris = spearman_autotest_harris(dataset) # -> -0.866056
+  corPMA = spearman_autotest_pma(dataset) # -> 0.8928448
   
   #preparing data
   N <- 1e4
