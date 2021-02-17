@@ -19,13 +19,17 @@ generate_plot_arthrose_by_matta <- function(dataset){
     )
   )
   
+  #aggregate 1-2 and 3-4
+  dataset$ArthroseFull <- as.character(dataset$Arthrose)
+  dataset$ArthroseFull[dataset$Arthrose == "1" | dataset$Arthrose == "2"] <- "1-2"
+  dataset$ArthroseFull[dataset$Arthrose == "3" | dataset$Arthrose == "4"] <- "3-4"
+  dataset$ArthroseFull[dataset$Arthrose == "0"] <- "0"
+  
   dataset$Arthrose <- factor(
-    dataset$Arthrose,
+    dataset$ArthroseFull,
     levels=c(
-      "4",
-      "3",
-      "2",
-      "1",
+      "3-4",
+      "1-2",
       "0"
     )
   )
@@ -79,15 +83,19 @@ generate_plot_arthrose_by_fracture <- function(dataset){
   dataset$FractureX[dataset$Fracture == "bi colonne"] <- "BC"
   dataset$FractureX[dataset$Fracture == "T"] <- "T"
   dataset$FractureX[dataset$Fracture == "colonne antérieure"] <- "CA"
+  
+  #aggregate 1-2 and 3-4
+  dataset$ArthroseFull <- as.character(dataset$Arthrose)
+  dataset$ArthroseFull[dataset$Arthrose == "1" | dataset$Arthrose == "2"] <- "1-2"
+  dataset$ArthroseFull[dataset$Arthrose == "3" | dataset$Arthrose == "4"] <- "3-4"
+  dataset$ArthroseFull[dataset$Arthrose == "0"] <- "0"
 
   
-  dataset$Arthrose <- factor(
-    dataset$Arthrose,
+  dataset$ArthroseFull <- factor(
+    dataset$ArthroseFull,
     levels=c(
-      "4",
-      "3",
-      "2",
-      "1",
+      "3-4",
+      "1-2",
       "0"
     )
   )
@@ -97,7 +105,7 @@ generate_plot_arthrose_by_fracture <- function(dataset){
                 FractureX, 
                 levels=factor_fracture_x_levels(),
               ), 
-              fill=Arthrose,
+              fill=ArthroseFull,
               y = (..count..)/sum(..count..)
           )
     ) +

@@ -21,7 +21,7 @@ palette_fractures <- function(){
 }
 
 palette_radios <- function(){
-  return("Spectral")
+  return("Set1")
 }
 
 color_boxplot_scores <- function(scorename){

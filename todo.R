@@ -4,9 +4,9 @@
 #   
 
 #
-#   -> automate graphs generation
+#   -> automate graphs generation OK
 #
-#   -> AUTOMATE TABLE EXPORTS
+#   -> AUTOMATE TABLE EXPORTS (LATER)
 #
 #   -> regrouper (1,2) et (3,4) 
 

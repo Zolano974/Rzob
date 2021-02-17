@@ -17,7 +17,8 @@ source("utils/fn_scores.R")
 source("utils/fn_sf36.R")
 source("utils/fn_radios.R")
 
-ReccueilR <- read_excel("../ReccueilR.xls")
+ReccueilR <- read_excel("./ReccueilR.xls")
+
 
 # savePath = "/home/zolano/Documents/TheseSophie/R/results/clean5"
 savePath = "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV"
@@ -211,7 +212,7 @@ setDT(ReccueilR)
     #STATS GLOBALE
     global_stats_table = calculate_global_stat_by_score(scoresdata)
     global_stats_table
-    # write.csv(global_stats_table, "/home/zolano/Documents/TheseSophie/R/zob.csv", row.names = TRUE)
+    write.csv(global_stats_table, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV/11_SCORES_mean_sd_global.csv", row.names = TRUE)
     # View(global_stats_table)
     
     #SOUS GROUPES PAR TYPE DE FRACTURE
@@ -220,9 +221,11 @@ setDT(ReccueilR)
     
     mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
     mean_by_score
+    write.csv(mean_by_score, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV/12_SCORES_mean_sd_par_type_fracture_moyenne.csv", row.names = TRUE)
     
     sd_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, sd)
     sd_by_score
+    write.csv(sd_by_score, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV/12_SCORES_mean_sd_par_type_fracture_ecartype.csv", row.names = TRUE)
     
     #Boxplots
     
@@ -257,7 +260,7 @@ setDT(ReccueilR)
 # ======== #    
 # V - SF36 #
 # ======== #
-
+  sf36 <- read_excel("./sf36.xlsx")
   setDT(sf36)
   
     # ------------------------------- #
@@ -274,6 +277,7 @@ setDT(ReccueilR)
     #paroi post
     calculate_sf36_means(sf36[typefracture == "paroi post"])
     generate_SF36_circularo_barplot(sf36[typefracture == "paroi post"])
+    #22_SF36_moyennes_global.png
     
     #transversale
     calculate_sf36_means(sf36[typefracture == "transversale"])
