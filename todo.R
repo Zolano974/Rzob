@@ -3,17 +3,17 @@
 # Arthrose : 
 #   
 
-#
-#   -> automate graphs generation OK
-#
-#   -> AUTOMATE TABLE EXPORTS (LATER)
-#
-#   -> regrouper (1,2) et (3,4) 
-
+  # LIST TO BE DEFINED
 
   # -> correlation MATTA, type de fracture
   # -> correlation Resultats Radios (arthrose), type de fracture
   # -> correlation chaque score, type de fracture
+
+
+
+
+
+
 
 
 # 
