@@ -21,7 +21,7 @@ ReccueilR <- read_excel("./ReccueilR.xls")
 
 
 # savePath = "/home/zolano/Documents/TheseSophie/R/results/clean5"
-savePath = "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV"
+savePath = "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanVI"
 
 
 setDT(ReccueilR)
@@ -212,7 +212,7 @@ setDT(ReccueilR)
     #STATS GLOBALE
     global_stats_table = calculate_global_stat_by_score(scoresdata)
     global_stats_table
-    write.csv(global_stats_table, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV/11_SCORES_mean_sd_global.csv", row.names = TRUE)
+    write.csv(global_stats_table, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanVI/11_SCORES_mean_sd_global.csv", row.names = TRUE)
     # View(global_stats_table)
     
     #SOUS GROUPES PAR TYPE DE FRACTURE
@@ -221,11 +221,11 @@ setDT(ReccueilR)
     
     mean_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, mean)
     mean_by_score
-    write.csv(mean_by_score, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV/12_SCORES_mean_sd_par_type_fracture_moyenne.csv", row.names = TRUE)
+    write.csv(mean_by_score, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanVI/12_SCORES_mean_sd_par_type_fracture_moyenne.csv", row.names = TRUE)
     
     sd_by_score <- apply(scoresdata[,1:4],2,tapply, scoresdata$Fracture, sd)
     sd_by_score
-    write.csv(sd_by_score, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanV/12_SCORES_mean_sd_par_type_fracture_ecartype.csv", row.names = TRUE)
+    write.csv(sd_by_score, "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanVI/12_SCORES_mean_sd_par_type_fracture_ecartype.csv", row.names = TRUE)
     
     #Boxplots
     
@@ -257,10 +257,23 @@ setDT(ReccueilR)
       units = "cm"
     )        
     
+    
+    #repartition harris PMA par résultat
+    generate_pma_harris_by_result(scoresdata)
+    ggsave(
+      filename="22_PMA_Harris_repartition.png", 
+      plot=last_plot(),
+      device = png(),
+      path =  savePath,
+      width = 25,
+      height = 12.5,
+      units = "cm"
+    )   
+    
 # ======== #    
 # V - SF36 #
 # ======== #
-  sf36 <- read_excel("./sf36.xlsx")
+  sf36 <- read_excel("./sf36.xls")
   setDT(sf36)
   
     # ------------------------------- #

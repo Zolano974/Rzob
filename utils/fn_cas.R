@@ -1,6 +1,37 @@
 source("utils/theming_plots.R")
 source("utils/theming_colors.R")
 
+
+
+percentage_harris_category <- function(dataset, harris_category){
+  
+  total = nrow(dataset)
+  
+  t_harris_category <- quote(harris_category)
+  occurrences = nrow(dataset[HarrisCategory == eval(t_harris_category)])
+  
+  if(occurrences == 0){
+    return(0)
+  }
+  return(round((occurrences / total), 3) *100 )
+  
+}
+
+
+percentage_pma_category <- function(dataset, pma_category){
+  
+  total = nrow(dataset)
+  
+  t_pma_category <- quote(pma_category)
+  occurrences = nrow(dataset[PMACategory == eval(t_pma_category)])
+  
+  if(occurrences == 0){
+    return(0)
+  }
+  return(round((occurrences / total), 3) *100 )
+  
+}
+
 #calculate the % of the given trauma over the given dataset
 percentage_trauma <- function(dataset, trauma){
   

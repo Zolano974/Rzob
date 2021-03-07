@@ -1,5 +1,6 @@
 #functions related to score results
 source("utils/fn_fractures.R")
+source("utils/fn_cas.R")
 source("utils/theming_plots.R")
 
 #keep only interesting columns
@@ -79,5 +80,108 @@ generate_score_boxplot <- function(dataset, column){
       y_text_vjust = 0.5
     ) 
   return(plot)
+}
+
+#matta/harris - répartition par catégories
+generate_pma_harris_by_result <- function(dataset){
+
+  #aggregate Harris
+  dataset$HarrisCategory <- as.character(dataset$HarrisHS)
+  dataset$HarrisCategory[dataset$HarrisHS < 70] <- "Mauvais"
+  dataset$HarrisCategory[dataset$HarrisHS >= 70 & dataset$HarrisHS < 80] <- "Moyen"
+  dataset$HarrisCategory[dataset$HarrisHS >= 80 & dataset$HarrisHS < 90] <- "Bon"
+  dataset$HarrisCategory[dataset$HarrisHS >= 90] <- "Excellent"
+  
+  #aggregate PMA
+  dataset$PMACategory <- as.character(dataset$PMA)
+  dataset$PMACategory[dataset$PMA < 13] <- "Mauvais"
+  dataset$PMACategory[dataset$PMA >= 13 & dataset$PMA < 15] <- "Moyen"
+  dataset$PMACategory[dataset$PMA >= 15 & dataset$PMA < 18] <- "Bon"
+  dataset$PMACategory[dataset$PMA == 18] <- "Excellent"
+  
+  N <- 1e4
+  plotdataset <- data.frame(
+    ResultCategory=character(),
+    HarrisPercentage=integer(),
+    PMAPercentage=integer(),
+    stringsAsFactors=FALSE
+  )
+  
+  plotdataset[1, ] <- list(
+    "Excellent", 
+    #Harris
+    percentage_harris_category(dataset, "Excellent"),
+    #PMA
+    percentage_pma_category(dataset, "Excellent")
+  )
+  plotdataset[2, ] <- list(
+    "Bon", 
+    #Harris
+    percentage_harris_category(dataset, "Bon"),
+    #PMA
+    percentage_pma_category(dataset, "Bon")
+  )
+  plotdataset[3, ] <- list(
+    "Moyen", 
+    #Harris
+    percentage_harris_category(dataset, "Moyen"),
+    #PMA
+    percentage_pma_category(dataset, "Moyen")
+  )
+  plotdataset[4, ] <- list(
+    "Mauvais", 
+    #Harris
+    percentage_harris_category(dataset, "Mauvais"),
+    #PMA
+    percentage_pma_category(dataset, "Mauvais")
+  )
+  
+  
+  plotdataset$ResultCategory <- factor(
+    plotdataset$ResultCategory,
+    levels=c(
+      "Excellent",
+      "Bon",
+      "Moyen",
+      "Mauvais"
+    )
+  )
+  
+  # plotdataset <- mutate(plotdataset, HarrisPercentage= -HarrisPercentage)
+  
+  plot = ggplot(plotdataset, aes(x= ResultCategory)) +
+    # scale_y_continuous(position="None") +
+    geom_col(
+      aes(y = PMAPercentage),
+      alpha=0.6,
+      fill="#ff6600",
+      width=0.7
+    ) +
+    geom_text(aes(y= PMAPercentage, label = paste(PMAPercentage, "%")), vjust = -0.3, colour = "black", size=4) +
+    # scale_y_continuous(position="None") +
+    geom_col(
+      aes(y = -HarrisPercentage),
+      alpha=0.6,
+      fill="#660055",
+      width=0.7
+    ) +
+    geom_text(aes(y= -HarrisPercentage,label = paste(HarrisPercentage, "%")), vjust = 1.2, colour = "black", size=4)+
+    labs (
+      title= "",
+      y="Harris       -      PMA",
+      x="Résultats"
+    ) +
+    default_theming(
+      y_title_angle = 90,
+      y_title_vjust = -0.5,
+      y_title_size=15,
+      x_text_size = 15, 
+      x_title_size = 20, 
+      title_size = 14,
+      legend_title_size = 12,
+      y_text_size = 0,
+    )
+    return(plot)
+
 }
 
