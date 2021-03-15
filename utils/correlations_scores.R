@@ -6,7 +6,7 @@ library(gridExtra)
 library(cowplot)
 library(hash)
 library(readxl)
-library(RVAideMemoire)
+library(DescTools)
 
 source("utils/fn_cas.R")
 source("utils/fn_correlation_scores_autotest.R")
@@ -203,9 +203,6 @@ dataset_harris_lux = ReccueilR[
 
 #chi² HarrisHS / Type Luxation
 chisq.test(dataset_harris_lux$HarrisHS, dataset_harris_lux$Luxation) #  X-squared = 22, df = 17, p-value = 0.1847
-
-cochran.qtest(Luxation ~ HarrisHS, data=dataset_harris_lux)
-
 
 # CORRELATION Womac ============================================================================================
 #   spearman Womac / Matta     ->  # 
