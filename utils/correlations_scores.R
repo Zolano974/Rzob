@@ -147,10 +147,10 @@ chisq.test(dataset_oxford_lux$Oxford, dataset_oxford_lux$Luxation) # ->  X-squar
 
 
 # CORRELATION HarrisHS ============================================================================================
-#   spearman HarrisHS / Matta     ->  # 
-#   spearman HarrisHS / Age       ->  # 
-#   chi2 HarrisHS / Fracture       -> 
-#   chi2 HarrisHS / Luxation       -> 
+#   spearman HarrisHS / Matta     -> -0.3874262
+#   spearman HarrisHS / Age       -> -0.1501843
+#   chi2 HarrisHS / Fracture      -> X-squared = 92.845, df = 85, p-value = 0.2627
+#   chi2 HarrisHS / Luxation      -> X-squared = 22, df = 17, p-value = 0.1847
 # ===============================================================================================================
 
 
@@ -165,7 +165,7 @@ dataset_harris_matta = ReccueilR[
 ]
 
 #spearman HarrisHS / MATTA
-cor(x=dataset_harris_matta$HarrisHS, y=dataset_harris_matta$Matta, method="spearman")  # 
+cor(x=dataset_harris_matta$HarrisHS, y=dataset_harris_matta$Matta, method="spearman")  # -> -0.3874262
 
 # -------------------------
 # 2 - CORRELATION HarrisHS - Age (spearman)
@@ -178,7 +178,7 @@ dataset_harris_age = ReccueilR[
 ]
 
 #spearman HarrisHS / AGE
-cor(x=dataset_harris_age$HarrisHS, y=dataset_harris_age$Age, method="spearman")  # -> 
+cor(x=dataset_harris_age$HarrisHS, y=dataset_harris_age$Age, method="spearman")  # -> -0.1501843
 
 # -------------------------
 # 3 - CORRELATION HarrisHS - Type de Fracture (Chi²)
@@ -190,7 +190,7 @@ dataset_harris_fracture = ReccueilR[
 ]
 
 #chi² HarrisHS / Type Fracture
-chisq.test(dataset_harris_fracture$HarrisHS, dataset_harris_fracture$Fracture, correct=FALSE) #
+chisq.test(dataset_harris_fracture$HarrisHS, dataset_harris_fracture$Fracture, correct=FALSE) # -> X-squared = 92.845, df = 85, p-value = 0.2627
 
 # -------------------------
 # 4 - CORRELATION HarrisHS - Luxation (Chi²)
@@ -202,15 +202,16 @@ dataset_harris_lux = ReccueilR[
 ]
 
 #chi² HarrisHS / Type Luxation
-chisq.test(dataset_harris_lux$HarrisHS, dataset_harris_lux$Luxation) # 
+chisq.test(dataset_harris_lux$HarrisHS, dataset_harris_lux$Luxation) #  X-squared = 22, df = 17, p-value = 0.1847
 
+cochran.qtest(Luxation ~ HarrisHS, data=dataset_harris_lux)
 
 
 # CORRELATION Womac ============================================================================================
 #   spearman Womac / Matta     ->  # 
-#   spearman Womac / Age       ->  # 
-#   chi2 Womac / Fracture       -> 
-#   chi2 Womac / Luxation       -> 
+#   spearman Womac / Age       ->  -> -0.2024994
+#   chi2 Womac / Fracture      -> X-squared = 93.369, df = 80, p-value = 0.1457
+#   chi2 Womac / Luxation      -> X-squared = 15, df = 16, p-value = 0.5246
 # ===============================================================================================================
 
 
@@ -219,47 +220,47 @@ chisq.test(dataset_harris_lux$HarrisHS, dataset_harris_lux$Luxation) #
 # ---------------------------
 
 #filter data
-dataset_harris_matta = ReccueilR[
+dataset_womac_matta = ReccueilR[
   !is.na(Womac)
   &!is.na(Matta)
 ]
 
 #spearman Womac / MATTA
-cor(x=dataset_harris_matta$Womac, y=dataset_harris_matta$Matta, method="spearman")  # 
+cor(x=dataset_womac_matta$Womac, y=dataset_womac_matta$Matta, method="spearman")  # -> 0.3160486
 
 # -------------------------
 # 2 - CORRELATION Womac - Age (spearman)
 # -------------------------
 
 #filter data
-dataset_harris_age = ReccueilR[
+dataset_womac_age = ReccueilR[
   !is.na(Womac)
   &!is.na(Age)
 ]
 
 #spearman Womac / AGE
-cor(x=dataset_harris_age$Womac, y=dataset_harris_age$Age, method="spearman")  # -> 
+cor(x=dataset_womac_age$Womac, y=dataset_womac_age$Age, method="spearman")  # -> -0.2024994
 
 # -------------------------
 # 3 - CORRELATION Womac - Type de Fracture (Chi²)
 # -------------------------
 
-dataset_harris_fracture = ReccueilR[
+dataset_womac_fracture = ReccueilR[
   !is.na(Womac)
   &!is.na(Fracture)
 ]
 
 #chi² Womac / Type Fracture
-chisq.test(dataset_harris_fracture$Womac, dataset_harris_fracture$Fracture, correct=FALSE) #
+chisq.test(dataset_womac_fracture$Womac, dataset_womac_fracture$Fracture, correct=FALSE) # -> X-squared = 93.369, df = 80, p-value = 0.1457
 
 # -------------------------
 # 4 - CORRELATION Womac - Luxation (Chi²)
 # -------------------------
 
-dataset_harris_lux = ReccueilR[
+dataset_womac_lux = ReccueilR[
   !is.na(Womac)
   &!is.na(Luxation)
 ]
 
 #chi² Womac / Type Luxation
-chisq.test(dataset_harris_lux$Womac, dataset_harris_lux$Luxation) # 
+chisq.test(dataset_womac_lux$Womac, dataset_womac_lux$Luxation) # X-squared = 15, df = 16, p-value = 0.5246
