@@ -20,8 +20,8 @@ source("utils/fn_radios.R")
 ReccueilR <- read_excel("./ReccueilR.xls")
 
 
-# savePath = "/home/zolano/Documents/TheseSophie/R/results/clean5"
-savePath = "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanVI"
+savePath = "/home/zolano/Documents/TheseSophie/R/results/cleanVII"
+# savePath = "/home/jhouvenaeghel/Projects/perso/Rzob/results/cleanVI"
 
 
 setDT(ReccueilR)
@@ -32,6 +32,12 @@ setDT(ReccueilR)
 
     # -> répartition des cas par type de trauma
     generaldata = ReccueilR
+    
+    
+    #cronbch's alpha TEST
+    # doc : https://www.rdocumentation.org/packages/ltm/versions/1.1-1/topics/cronbach.alpha
+    cronbach.alpha(generaldatadata$Autotest, standardized = FALSE, CI = FALSE, 
+                   probs = c(0.025, 0.975), B = 1000, na.rm = FALSE)
     
     # -> réprtition des cas par type de trauma
     generate_plot_patients_repartition_by_traumatisme(generaldata)
